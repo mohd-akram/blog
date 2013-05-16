@@ -1,7 +1,6 @@
 Title: A Python Developer's Guide to PowerShell
 Date: 2013-05-16 22:00
 Tags: python, powershell
-Slug: tutorials/python-developer-guide-to-powershell
 Author: Mohammad Akram
 Summary: An introduction to PowerShell for Python developers. 
 
