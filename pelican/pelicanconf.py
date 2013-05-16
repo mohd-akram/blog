@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 
 AUTHOR = 'mohd-akram'
 SITENAME = 'Dev Blog'
-SITEURL = 'http://mohd-akram.github.io'
 GITHUB_URL = 'https://github.com/mohd-akram'
 
 TIMEZONE = 'Asia/Dubai'
@@ -25,4 +24,4 @@ SOCIAL = ()
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True
