@@ -13,6 +13,12 @@ from pelicanconf import *
 SITEURL = 'http://mohd-akram.github.io'
 RELATIVE_URLS = False
 
+ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}'
+PAGE_URL = 'pages/{slug}'
+AUTHOR_URL = 'author/{slug}'
+CATEGORY_URL = 'category/{slug}'
+TAG_URL = 'tag/{slug}'
+
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
 
