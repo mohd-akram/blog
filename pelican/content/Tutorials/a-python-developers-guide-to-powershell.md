@@ -7,7 +7,7 @@ Summary: An introduction to PowerShell for Python developers.
 Introduction
 ------------
 
-Python is a great scripting language - it's available by default on Linux and Mac and so it's easy to quickly write a short script that runs on many systems. However, this isn't the case on Windows. You need to install Python or wrap your application to distribute it on Windows, so we need an alternative. Sometimes this is inconvenient, especially if you want to do something simple or deal directly with Windows. This is where PowerShell comes in.
+Python is a great scripting language - it's available by default on Linux and Mac and so it's easy to quickly write a short script that runs on many systems. However, this isn't the case on Windows. You need to install Python or wrap your application to distribute it. Sometimes this is inconvenient, especially if you want to do something simple or deal directly with Windows specific functions, so we need an alternative. This is where PowerShell comes in.
 
 Getting started
 ---------------
@@ -43,9 +43,9 @@ $a, $b = $b, $a
 Write-Host a=$a, b=$b
 Write-Host ($a + $b)
 ```
-Without parentheses, the second Write-Host command would produce "5 + 6" instead of "11".
+Without parentheses, the second `Write-Host` command would produce `5 + 6` instead of `11`.
 
-Powershell also supports arrays with mixed types,
+PowerShell also supports arrays with mixed types,
 
 ```powershell
 $Array = 2, "cheese", 6.5, "cake"
@@ -106,7 +106,7 @@ do {
 Conditions
 ----------
 
-Conditions look slightly differently in PowerShell:
+Conditions look slightly different in PowerShell:
 ```powershell
 # Equal to
 $True -eq $False # False
@@ -152,7 +152,7 @@ Function Fib($n) {
     return (Fib($n - 2)) + (Fib($n - 1))
 }
 ```
-Again, the parentheses around the `fib` calls are important to properly return a value.   
+Again, the parentheses around the `Fib` calls are important to properly return a value.   
 
 List comprehensions
 -------------------
@@ -180,7 +180,7 @@ The `?` is an alias for `Where-Object` and `%` is an alias for `ForEach-Object`.
 Example program
 ---------------
 
-I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a 'xkcd' folder on the Desktop.
+I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a "xkcd" folder on the Desktop.
 
 Python:
 ```python
@@ -276,7 +276,7 @@ Notes
 -----
 You might have to change your PowerShell [execution policy](http://technet.microsoft.com/en-us/library/ee176961.aspx) to run scripts. To do this, run PowerShell as Administrator and type `Set-ExecutionPolicy RemoteSigned`.
 
-A great way to learn about PowerShell is to use the `Get-Help` cmdlet. Simply type `Get-Help` followed by any other cmdlet to get more information about it. You can update your help files to be more comprehensive by running `Update-Help` as an administrator.
+A great way to learn about PowerShell is to use the `Get-Help` cmdlet. Simply type `Get-Help` followed by any other cmdlet to get more information about it. You can update your help files to be more comprehensive by running `Update-Help` as an administrator (PowerShell 3).
 
 You can use [IE to parse HTML](http://dmitrysotnikov.wordpress.com/2012/08/06/new-in-powershell-3-parse-html-without-ie-object-unless-a-local-file/) instead of `Invoke-WebRequest` if you don't have PowerShell 3.
 

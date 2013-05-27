@@ -41,7 +41,7 @@
         <p>In <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>. </p>
 <p>tags: <a href="http://mohd-akram.github.io/tag/python">python</a><a href="http://mohd-akram.github.io/tag/powershell">powershell</a></p>
 </footer><!-- /.post-info -->      <h2>Introduction</h2>
-<p>Python is a great scripting language - it's available by default on Linux and Mac and so it's easy to quickly write a short script that runs on many systems. However, this isn't the case on Windows. You need to install Python or wrap your application to distribute it on Windows, so we need an alternative. Sometimes this is inconvenient, especially if you want to do something simple or deal directly with Windows. This is where PowerShell comes in.</p>
+<p>Python is a great scripting language - it's available by default on Linux and Mac and so it's easy to quickly write a short script that runs on many systems. However, this isn't the case on Windows. You need to install Python or wrap your application to distribute it. Sometimes this is inconvenient, especially if you want to do something simple or deal directly with Windows specific functions, so we need an alternative. This is where PowerShell comes in.</p>
 <h2>Getting started</h2>
 <p>PowerShell is a very powerful scripting language and is cmd.exe's successor. It also comes with a capable IDE which you can use for this tutorial. Find <em>Windows PowerShell ISE</em> in the Start menu or open <em>Windows PowerShell</em> and type the <code>ise</code> command to start it. Now let's write our first program.</p>
 <p>In Python, this is how you'd write a "hello world" program:</p>
@@ -75,8 +75,8 @@
 </pre></div>
 
 
-<p>Without parentheses, the second Write-Host command would produce "5 + 6" instead of "11".</p>
-<p>Powershell also supports arrays with mixed types,</p>
+<p>Without parentheses, the second <code>Write-Host</code> command would produce <code>5 + 6</code> instead of <code>11</code>.</p>
+<p>PowerShell also supports arrays with mixed types,</p>
 <div class="highlight"><pre><span class="nv">$Array</span> <span class="p">=</span> <span class="n">2</span><span class="p">,</span> <span class="s2">&quot;cheese&quot;</span><span class="p">,</span> <span class="n">6</span><span class="p">.</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;cake&quot;</span>
 
 <span class="c"># Explicit syntax</span>
@@ -132,7 +132,7 @@
 
 
 <h2>Conditions</h2>
-<p>Conditions look slightly differently in PowerShell:</p>
+<p>Conditions look slightly different in PowerShell:</p>
 <div class="highlight"><pre><span class="c"># Equal to</span>
 <span class="nv">$True</span> <span class="o">-eq</span> <span class="nv">$False</span> <span class="c"># False</span>
 <span class="c"># Not equal to</span>
@@ -180,7 +180,7 @@
 </pre></div>
 
 
-<p>Again, the parentheses around the <code>fib</code> calls are important to properly return a value.   </p>
+<p>Again, the parentheses around the <code>Fib</code> calls are important to properly return a value.   </p>
 <h2>List comprehensions</h2>
 <p>To get a list of all the multiples of 2 from 1 to 20, you'd do this in Python:</p>
 <div class="highlight"><pre><span class="n">multiples</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
@@ -205,7 +205,7 @@
 
 <p>The <code>?</code> is an alias for <code>Where-Object</code> and <code>%</code> is an alias for <code>ForEach-Object</code>.</p>
 <h2>Example program</h2>
-<p>I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a 'xkcd' folder on the Desktop.</p>
+<p>I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a "xkcd" folder on the Desktop.</p>
 <p>Python:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
@@ -299,7 +299,7 @@
 
 <h2>Notes</h2>
 <p>You might have to change your PowerShell <a href="http://technet.microsoft.com/en-us/library/ee176961.aspx">execution policy</a> to run scripts. To do this, run PowerShell as Administrator and type <code>Set-ExecutionPolicy RemoteSigned</code>.</p>
-<p>A great way to learn about PowerShell is to use the <code>Get-Help</code> cmdlet. Simply type <code>Get-Help</code> followed by any other cmdlet to get more information about it. You can update your help files to be more comprehensive by running <code>Update-Help</code> as an administrator.</p>
+<p>A great way to learn about PowerShell is to use the <code>Get-Help</code> cmdlet. Simply type <code>Get-Help</code> followed by any other cmdlet to get more information about it. You can update your help files to be more comprehensive by running <code>Update-Help</code> as an administrator (PowerShell 3).</p>
 <p>You can use <a href="http://dmitrysotnikov.wordpress.com/2012/08/06/new-in-powershell-3-parse-html-without-ie-object-unless-a-local-file/">IE to parse HTML</a> instead of <code>Invoke-WebRequest</code> if you don't have PowerShell 3.</p>
 <h2>Conclusions</h2>
 <p>This is just scratching the surface of PowerShell by covering the syntax basics. The real power of PowerShell comes from piping and the various types of cmdlets that come built in to the language, similar to the Python standard library. You also get a nice IDE to boot - and it's already on your Windows machine.</p>
