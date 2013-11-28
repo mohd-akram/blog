@@ -117,7 +117,8 @@
 <h2>Explanation</h2>
 <p>The code sets up a Tk window with an image of the game acting as a link to play it and a button underneath to find another random game. The <code>getownedgames</code> function gets a list of the user's Steam games as a JSON object which is converted to a dictionary using the <code>json.loads</code> function from the <code>json</code> module. To open the game, the <code>webbrowser</code> module is used to open the Steam URL of the game in the default handler.</p>
 <p>Sometimes a game doesn't have an image which is why I have the try-except block in the <code>choosegame</code> function. Also, the image is stored in the <code>game</code> dictionary as we need to maintain a reference to any Tk images.</p>
-<p>For the GUI, to make the window non-resizable, <code>tk.resizable(0, 0)</code> is called. Each of the buttons is passed a function for the <code>command</code> argument which is called when the button is pressed. Finally, the <code>choosegame</code> function is called by invoking it through the second button.</p><p>There are <a href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python#disqus_thread">comments</a>.</p>                </article>
+<p>For the GUI, to make the window non-resizable, <code>tk.resizable(0, 0)</code> is called. Each of the buttons is passed a function for the <code>command</code> argument which is called when the button is pressed. Finally, the <code>choosegame</code> function is called by invoking it through the second button.</p>
+<p>Save the file with a <code>.pyw</code> extension to not show a console window.</p><p>There are <a href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python#disqus_thread">comments</a>.</p>                </article>
                             </aside><!-- /#featured -->
                             <section id="content" class="body">
                     <h1>Other articles</h1>

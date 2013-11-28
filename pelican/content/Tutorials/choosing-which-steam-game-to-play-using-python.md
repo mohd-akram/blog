@@ -95,3 +95,5 @@ The code sets up a Tk window with an image of the game acting as a link to play 
 Sometimes a game doesn't have an image which is why I have the try-except block in the `choosegame` function. Also, the image is stored in the `game` dictionary as we need to maintain a reference to any Tk images.
 
 For the GUI, to make the window non-resizable, `tk.resizable(0, 0)` is called. Each of the buttons is passed a function for the `command` argument which is called when the button is pressed. Finally, the `choosegame` function is called by invoking it through the second button.
+
+Save the file with a `.pyw` extension to not show a console window.
