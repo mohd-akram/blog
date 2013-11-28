@@ -1,6 +1,6 @@
 Title: Choosing which Steam game to play using Python
 Date: 2013-11-28 22:00
-Tags: python, powershell
+Tags: python
 Author: Mohammad Akram
 Summary: A brief look at Steam's API and Tk
 
