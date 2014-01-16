@@ -2,7 +2,7 @@ Title: Choosing which Steam game to play using Python
 Date: 2013-11-28 22:00
 Tags: python
 Author: Mohammad Akram
-Summary: A brief look at Steam's API and Tk
+Summary: A brief look at Steam's API and Tk.
 
 Introduction
 ------------
@@ -56,7 +56,7 @@ def choosegame(game, games, tk, button):
     except HTTPError:
         return choosegame(game, games, tk, button)
 
-    button.configure(image=game['image'])
+    button.configure(image=game['image'], command=lambda: playgame(game))
 
     tk.title(game['name'])
 
@@ -70,8 +70,7 @@ tk.configure(bg='gray11')
 
 gamebutton = Button(tk, width=460, height=215, bd=0,
                     bg='gray11', activebackground='gray11',
-                    relief='flat', cursor='hand2',
-                    command=lambda: playgame(game))
+                    relief='flat', cursor='hand2')
 gamebutton.pack()
 
 changebutton = Button(tk, width=41, height=1, bd=0,

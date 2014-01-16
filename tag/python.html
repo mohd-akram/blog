@@ -82,7 +82,7 @@
     <span class="k">except</span> <span class="n">HTTPError</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
 
-    <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">])</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">],</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">playgame</span><span class="p">(</span><span class="n">game</span><span class="p">))</span>
 
     <span class="n">tk</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
 
@@ -96,8 +96,7 @@
 
 <span class="n">gamebutton</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">tk</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">460</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">215</span><span class="p">,</span> <span class="n">bd</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                     <span class="n">bg</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span> <span class="n">activebackground</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span>
-                    <span class="n">relief</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;hand2&#39;</span><span class="p">,</span>
-                    <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">playgame</span><span class="p">(</span><span class="n">game</span><span class="p">))</span>
+                    <span class="n">relief</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;hand2&#39;</span><span class="p">)</span>
 <span class="n">gamebutton</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
 <span class="n">changebutton</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">tk</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bd</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
