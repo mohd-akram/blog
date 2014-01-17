@@ -72,22 +72,19 @@
     <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;steam://rungameid/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;appid&#39;</span><span class="p">]))</span>
 
 
-<span class="k">def</span> <span class="nf">choosegame</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
-    <span class="n">currgame</span> <span class="o">=</span> <span class="n">game</span>
-    <span class="k">while</span> <span class="n">game</span> <span class="o">==</span> <span class="n">currgame</span><span class="p">:</span>
-        <span class="n">game</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+    <span class="n">game</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">getimage</span><span class="p">(</span><span class="n">game</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">HTTPError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
 
     <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">],</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">playgame</span><span class="p">(</span><span class="n">game</span><span class="p">))</span>
 
     <span class="n">tk</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
 
 <span class="n">games</span> <span class="o">=</span> <span class="n">getownedgames</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span> <span class="n">steamid</span><span class="p">)</span>
-<span class="n">game</span> <span class="o">=</span> <span class="bp">None</span>
 
 <span class="c"># GUI</span>
 <span class="n">tk</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
@@ -104,7 +101,7 @@
                       <span class="n">bg</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span> <span class="n">activebackground</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span>
                       <span class="n">relief</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;hand2&#39;</span><span class="p">,</span>
                       <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;Segoe UI Semilight&#39;</span><span class="p">,),</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Nope!&#39;</span><span class="p">,</span>
-                      <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">gamebutton</span><span class="p">))</span>
+                      <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">gamebutton</span><span class="p">))</span>
 <span class="n">changebutton</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
 <span class="n">changebutton</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>

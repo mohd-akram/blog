@@ -46,22 +46,19 @@ def playgame(game):
     webbrowser.open('steam://rungameid/{}'.format(game['appid']))
 
 
-def choosegame(game, games, tk, button):
-    currgame = game
-    while game == currgame:
-        game = random.choice(games)
+def choosegame(games, tk, button):
+    game = random.choice(games)
 
     try:
         game['image'] = getimage(game)
     except HTTPError:
-        return choosegame(game, games, tk, button)
+        return choosegame(games, tk, button)
 
     button.configure(image=game['image'], command=lambda: playgame(game))
 
     tk.title(game['name'])
 
 games = getownedgames(apikey, steamid)
-game = None
 
 # GUI
 tk = Tk()
@@ -78,7 +75,7 @@ changebutton = Button(tk, width=41, height=1, bd=0,
                       bg='gray11', activebackground='gray11',
                       relief='flat', cursor='hand2',
                       font=('Segoe UI Semilight',), text='Nope!',
-                      command=lambda: choosegame(game, games, tk, gamebutton))
+                      command=lambda: choosegame(games, tk, gamebutton))
 changebutton.pack()
 
 changebutton.invoke()
