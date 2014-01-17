@@ -12,7 +12,7 @@ Steam sales are a wonderful thing and with the Autumn Sale going on now, a lot o
 Code
 ----
 
-First, you're going to need a Steam API key which you can get from [here](http://steamcommunity.com/dev/). You'll also need to know your 64-bit Steam ID which you can find from [here](http://steamidconverter.com/). Make sure you have the [Pillow (PIL)](https://pypi.python.org/pypi/Pillow/2.2.1) library too. The code is fairly straightforward:
+First, you're going to need a Steam API key which you can get from [here](http://steamcommunity.com/dev/). You'll also need to know your 64-bit Steam ID which you can find from [here](http://steamidconverter.com/). Make sure you have the [Pillow (PIL)](https://pypi.python.org/pypi/Pillow) library too. The code is fairly straightforward:
 
 ```python
 import json
