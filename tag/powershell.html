@@ -1,345 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-        <meta charset="utf-8" />
-        <title>Dev Blog - powershell</title>
-        <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/main.css" />
-        <link href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dev Blog Atom Feed" />
+    <title>powershell - Dev Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Dev Blog" />
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="Dev Blog"/>
+            <meta property="og:url" content="http://mohd-akram.github.io"/>
+            <meta property="og:description" content="Dev Blog"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://mohd-akram.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://mohd-akram.github.io/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/style.css" type="text/css"/>
+
+        <link href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Dev Blog ATOM Feed"/>
+
 </head>
-
-<body id="index" class="home">
-<a href="https://github.com/mohd-akram">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-</a>
-        <header id="banner" class="body">
-                <h1><a href="http://mohd-akram.github.io/">Dev Blog </a></h1>
-                <nav><ul>
-                    <li><a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">A Python Developer's Guide to PowerShell</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2013-05-16T22:00:00">
-                Thu 16 May 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://mohd-akram.github.io/author/mohammad-akram">Mohammad Akram</a>
-        </address>
-<p>In <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>. </p>
-<p>tags: <a href="http://mohd-akram.github.io/tag/python">python</a><a href="http://mohd-akram.github.io/tag/powershell">powershell</a></p>
-</footer><!-- /.post-info --><h2>Introduction</h2>
-<p>Python is a great scripting language - it's available by default on Linux and Mac and so it's easy to quickly write a short script that runs on many systems. However, this isn't the case on Windows. You need to install Python or wrap your application to distribute it. Sometimes this is inconvenient, especially if you want to do something simple or deal directly with Windows specific functions, so we need an alternative. This is where PowerShell comes in.</p>
-<h2>Getting started</h2>
-<p>PowerShell is a very powerful scripting language and is cmd.exe's successor. It also comes with a capable IDE which you can use for this tutorial. Find <em>Windows PowerShell ISE</em> in the Start menu or open <em>Windows PowerShell</em> and type the <code>ise</code> command to start it. Now let's write our first program.</p>
-<p>In Python, this is how you'd write a "hello world" program:</p>
-<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;hello, world&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>It's even easier in PowerShell:</p>
-<div class="highlight"><pre><span class="s2">&quot;hello, world&quot;</span>
-</pre></div>
-
-
-<p>PowerShell automatically outputs any strings to the screen without any command. That's kind of cheating, so here's the explicit way to do it:</p>
-<div class="highlight"><pre><span class="nb">Write-Host</span> <span class="s2">&quot;hello, world&quot;</span>
-</pre></div>
-
-
-<p>The names of PowerShell <em>cmdlets</em> are very consistent. They follow what <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms714428.aspx">Microsoft calls</a> a verb-noun pair convention.</p>
-<h2>Variables</h2>
-<p>Variables are defined by prepending a dollar sign to the variable name.</p>
-<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="n">5</span>
-<span class="nv">$b</span> <span class="p">=</span> <span class="n">6</span>
-</pre></div>
-
-
-<p>You can also do Python style variable swapping:</p>
-<div class="highlight"><pre><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span> <span class="p">=</span> <span class="nv">$b</span><span class="p">,</span> <span class="nv">$a</span>
-
-<span class="nb">Write-Host</span> <span class="n">a</span><span class="p">=</span><span class="nv">$a</span><span class="p">,</span> <span class="n">b</span><span class="p">=</span><span class="nv">$b</span>
-<span class="nb">Write-Host</span> <span class="p">(</span><span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Without parentheses, the second <code>Write-Host</code> command would produce <code>5 + 6</code> instead of <code>11</code>.</p>
-<p>PowerShell also supports arrays with mixed types,</p>
-<div class="highlight"><pre><span class="nv">$Array</span> <span class="p">=</span> <span class="n">2</span><span class="p">,</span> <span class="s2">&quot;cheese&quot;</span><span class="p">,</span> <span class="n">6</span><span class="p">.</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;cake&quot;</span>
-
-<span class="c"># Explicit syntax</span>
-<span class="nv">$Array</span> <span class="p">=</span> <span class="err">@</span><span class="p">(</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;ice&quot;</span><span class="p">,</span> <span class="n">3</span><span class="p">.</span><span class="n">14</span><span class="p">,</span> <span class="s2">&quot;cream&quot;</span><span class="p">)</span>
-
-<span class="c"># Inclusive range</span>
-<span class="nv">$Array</span> <span class="p">=</span> <span class="p">(</span><span class="n">1</span><span class="p">..</span><span class="n">10</span><span class="p">)</span>
-</pre></div>
-
-
-<p>It also supports dictionaries: </p>
-<div class="highlight"><pre><span class="nv">$Table</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="s2">&quot;a&quot;</span> <span class="p">=</span> <span class="s2">&quot;apple&quot;</span><span class="err">;</span> <span class="s2">&quot;b&quot;</span> <span class="p">=</span> <span class="s2">&quot;ball&quot;</span><span class="p">}</span>
-<span class="nv">$Table</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s2">&quot;acorn&quot;</span>
-
-<span class="c"># Loop through keys</span>
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$k</span> <span class="k">in</span> <span class="nv">$Table</span><span class="p">.</span><span class="n">keys</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">Write-Host</span> <span class="nv">$k</span><span class="p">,</span> <span class="nv">$table</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>Loops</h2>
-<p>What if we wanted to print the numbers from 1 to 10. In Python, it would look like this:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Similarly, in PowerShell:</p>
-<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="p">(</span><span class="n">1</span><span class="p">..</span><span class="n">10</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nb">Write-Host</span> <span class="nv">$i</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>You could just as easily use a while loop:</p>
-<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">1</span>
-<span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="n">10</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">Write-Host</span> <span class="nv">$i</span>
-    <span class="c"># Increment i</span>
-    <span class="nv">$i</span><span class="p">++</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Another interesting loop method is do...until:</p>
-<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
-<span class="k">do</span> <span class="p">{</span>
-    <span class="nv">$i</span><span class="p">++</span>
-    <span class="nb">Write-Host</span> <span class="nv">$i</span>
-<span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-eq</span> <span class="n">10</span><span class="p">)</span>
-</pre></div>
-
-
-<h2>Conditions</h2>
-<p>Conditions look slightly different in PowerShell:</p>
-<div class="highlight"><pre><span class="c"># Equal to</span>
-<span class="nv">$True</span> <span class="o">-eq</span> <span class="nv">$False</span> <span class="c"># False</span>
-<span class="c"># Not equal to</span>
-<span class="nv">$True</span> <span class="o">-ne</span> <span class="nv">$False</span> <span class="c"># True</span>
-
-<span class="c"># Less than</span>
-<span class="n">5</span> <span class="o">-lt</span> <span class="n">10</span> <span class="c"># True</span>
-<span class="c"># Greater than</span>
-<span class="n">5</span> <span class="o">-gt</span> <span class="n">10</span> <span class="c"># False</span>
-
-<span class="c"># Less than or equal to</span>
-<span class="n">5</span> <span class="o">-le</span> <span class="n">10</span> <span class="c"># True</span>
-<span class="c"># Greater than or equal to</span>
-<span class="n">5</span> <span class="o">-ge</span> <span class="n">10</span> <span class="c"># False</span>
-</pre></div>
-
-
-<p>PowerShell supports the same logical operators as Python including <code>-and</code>, <code>-or</code>, and <code>-not</code>.</p>
-<div class="highlight"><pre><span class="c"># Logical operators</span>
-<span class="nv">$Happy</span> <span class="p">=</span> <span class="nv">$True</span>
-<span class="nv">$KnowIt</span> <span class="p">=</span> <span class="nv">$True</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$Happy</span> <span class="o">-and</span> <span class="nv">$KnowIt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="s2">&quot;Clap hands!&quot;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>Functions</h2>
-<p>A typical Fibonacci function in Python looks like this:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">n</span>
-    <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-
-<p>To define a function in PowerShell, use the <code>Function</code> keyword:</p>
-<div class="highlight"><pre><span class="k">Function</span> <span class="n">Fib</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-lt</span> <span class="n">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$n</span>    
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">Fib</span><span class="p">(</span><span class="nv">$n</span> <span class="p">-</span> <span class="n">2</span><span class="p">))</span> <span class="p">+</span> <span class="p">(</span><span class="n">Fib</span><span class="p">(</span><span class="nv">$n</span> <span class="p">-</span> <span class="n">1</span><span class="p">))</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>Again, the parentheses around the <code>Fib</code> calls are important to properly return a value.   </p>
-<h2>List comprehensions</h2>
-<p>To get a list of all the multiples of 2 from 1 to 20, you'd do this in Python:</p>
-<div class="highlight"><pre><span class="n">multiples</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-
-<p>PowerShell:</p>
-<div class="highlight"><pre><span class="nv">$Multiples</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span>
-</pre></div>
-
-
-<p>The list comprehensions are somewhat different than in Python and make use of piping, which is a very powerful tool in PowerShell. In this case, a range from 1 to 20 is piped to the <code>Where-Object</code> command which filters the list of items according to the condition <code>$_ % 2 -eq 0</code>. The <code>$_</code> variable essentially refers to each item in a list of objects.</p>
-<p>To do an operation on each multiple of two, say find its square, we pipe the multiples to the <code>ForEach-Object</code>:</p>
-<div class="highlight"><pre><span class="nv">$Squares</span> <span class="p">=</span> <span class="nv">$Multiples</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
-</pre></div>
-
-
-<p>You can also do it all on one line:</p>
-<div class="highlight"><pre><span class="nv">$Squares</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="p">?</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
-</pre></div>
-
-
-<p>The <code>?</code> is an alias for <code>Where-Object</code> and <code>%</code> is an alias for <code>ForEach-Object</code>.</p>
-<h2>Example program</h2>
-<p>I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a "xkcd" folder on the Desktop.</p>
-<p>Python:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
-<span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
-
-<span class="c"># Parse xkcd page</span>
-<span class="k">class</span> <span class="nc">Parser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span> <span class="o">=</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">handle_starttag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
-        <span class="c"># If found &#39;comic&#39; div, then next img has comic link</span>
-        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s">&#39;div&#39;</span> <span class="ow">and</span> <span class="s">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;comic&#39;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span> <span class="o">=</span> <span class="bp">True</span>
-
-        <span class="c"># Set self.url to comic image url</span>
-        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s">&#39;img&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span> <span class="o">=</span> <span class="bp">False</span>
-
-
-<span class="k">def</span> <span class="nf">get_xkcd</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
-    <span class="c"># Path to xkcd folder on Desktop</span>
-    <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&quot;~&quot;</span><span class="p">),</span> <span class="s">&quot;Desktop/xkcd&quot;</span><span class="p">)</span>
-
-    <span class="c"># If folder doesn&#39;t exist, create one</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
-
-    <span class="c"># Download comic page</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://xkcd.com/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-
-    <span class="c"># Get image url from parser</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-
-    <span class="n">image_name</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">image_name</span><span class="p">)</span>
-
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-
-<span class="c"># Get a bunch of comics</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">1212</span><span class="p">):</span>
-    <span class="n">get_xkcd</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Downloaded xkcd #{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-</pre></div>
-
-
-<p>PowerShell:</p>
-<div class="highlight"><pre><span class="c"># Function to download xkcd comic. Get latest one if no $n is provided</span>
-<span class="k">Function</span> <span class="n">GetXkcd</span><span class="p">(</span><span class="nv">$n</span><span class="p">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c"># Path to xkcd folder on Desktop.</span>
-    <span class="c"># [Environment] is a .NET class with static method GetFolderPath.</span>
-    <span class="c"># Trailing backtick for line continuation.</span>
-    <span class="nv">$folder</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="p">(</span><span class="no">[Environment]</span><span class="err">::</span><span class="n">GetFolderPath</span><span class="p">(</span><span class="s2">&quot;Desktop&quot;</span><span class="p">))</span> <span class="p">`</span>
-                        <span class="n">-ChildPath</span> <span class="s1">&#39;xkcd&#39;</span>
-
-    <span class="c"># If folder doesn&#39;t exist, create one</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$folder</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nb">New-Item</span> <span class="nv">$folder</span> <span class="n">-Type</span> <span class="n">Directory</span>
-    <span class="p">}</span>
-
-    <span class="c"># Initiate web request (requires PowerShell 3). See Notes.</span>
-    <span class="c"># Uses -f to format string to replace {0} by comic number</span>
-    <span class="nv">$result</span> <span class="p">=</span> <span class="nb">Invoke-WebRequest</span> <span class="p">(</span><span class="s2">&quot;http://xkcd.com/{0}&quot;</span> <span class="o">-f</span> <span class="nv">$n</span><span class="p">)</span>
-
-    <span class="c"># Get &#39;src&#39; property of second img tag (contains comic url)</span>
-    <span class="nv">$url</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$result</span><span class="p">.</span><span class="n">AllElements</span> <span class="p">|</span> <span class="n">where</span> <span class="n">tagName</span> <span class="o">-eq</span> <span class="n">img</span><span class="p">)[</span><span class="n">1</span><span class="p">].</span><span class="n">src</span>
-
-    <span class="c"># Join folder path with image file name</span>
-    <span class="nv">$destination</span> <span class="p">=</span>  <span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="nv">$folder</span> <span class="p">`</span>
-                              <span class="n">-ChildPath</span> <span class="p">((</span><span class="nb">Split-Path</span> <span class="n">-Leaf</span> <span class="nv">$url</span><span class="p">))</span>
-
-    <span class="c"># Download image</span>
-    <span class="nv">$wc</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span>
-    <span class="nv">$wc</span><span class="p">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span> <span class="nv">$destination</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c"># Get a bunch of comics</span>
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="n">1200</span><span class="p">..</span><span class="n">1211</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">GetXkcd</span> <span class="nv">$i</span>
-    <span class="s2">&quot;Downloaded xkcd #{0}&quot;</span> <span class="o">-f</span> <span class="nv">$i</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h2>Notes</h2>
-<p>You might have to change your PowerShell <a href="http://technet.microsoft.com/en-us/library/ee176961.aspx">execution policy</a> to run scripts. To do this, run PowerShell as Administrator and type <code>Set-ExecutionPolicy RemoteSigned</code>.</p>
-<p>A great way to learn about PowerShell is to use the <code>Get-Help</code> cmdlet. Simply type <code>Get-Help</code> followed by any other cmdlet to get more information about it. You can update your help files to be more comprehensive by running <code>Update-Help</code> as an administrator (PowerShell 3).</p>
-<p>You can use <a href="http://dmitrysotnikov.wordpress.com/2012/08/06/new-in-powershell-3-parse-html-without-ie-object-unless-a-local-file/">IE to parse HTML</a> instead of <code>Invoke-WebRequest</code> if you don't have PowerShell 3.</p>
-<h2>Conclusions</h2>
-<p>This is just scratching the surface of PowerShell by covering the syntax basics. The real power of PowerShell comes from piping and the various types of cmdlets that come built in to the language, similar to the Python standard library. You also get a nice IDE to boot - and it's already on your Windows machine.</p><p>There are <a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell#disqus_thread">comments</a>.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://mohd-akram.github.io/" class="navbar-brand">
+Dev Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://mohd-akram.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <article>
+                <h2><a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">A Python Developer's Guide to PowerShell</a></h2>
+                <div class="summary"><p>An introduction to PowerShell for Python developers.</p>
+                    <a class="btn btn-default btn-xs" href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">more ...</a>
+                </div>
+            </article>
+            <hr/>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://github.com/mohd-akram"><i
+                            class="fa fa-github-square fa-lg"></i> github
+                    </a></li>
+                  </ul>
+                </li>
+
+
+
+                <li class="list-group-item"><a href="http://mohd-akram.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://mohd-akram.github.io/tag/python">
+                                python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://mohd-akram.github.io/tag/powershell">
+                                powershell
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2013 mohd-akram
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://mohd-akram.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://mohd-akram.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://mohd-akram.github.io/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
     <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-40999116-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'mohd-akram'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'mohd-akram';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-40999116-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 </body>
 </html>

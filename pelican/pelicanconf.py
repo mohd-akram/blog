@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+THEME = 'themes/pelican-bootstrap3'
+
 AUTHOR = 'mohd-akram'
 SITENAME = 'Dev Blog'
-GITHUB_URL = 'https://github.com/mohd-akram'
+CC_LICENSE = 'CC-BY'
 
 TIMEZONE = 'Asia/Dubai'
 
@@ -22,7 +24,7 @@ TRANSLATION_FEED_ATOM = None
 LINKS = ()
 
 # Social widget
-SOCIAL = ()
+SOCIAL = (('github', 'https://github.com/mohd-akram'),)
 
 DEFAULT_PAGINATION = 10
 

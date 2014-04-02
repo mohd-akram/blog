@@ -1,186 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-        <meta charset="utf-8" />
-        <title>Dev Blog - python</title>
-        <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/main.css" />
-        <link href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dev Blog Atom Feed" />
+    <title>python - Dev Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Dev Blog" />
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="Dev Blog"/>
+            <meta property="og:url" content="http://mohd-akram.github.io"/>
+            <meta property="og:description" content="Dev Blog"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://mohd-akram.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://mohd-akram.github.io/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://mohd-akram.github.io/theme/css/style.css" type="text/css"/>
+
+        <link href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Dev Blog ATOM Feed"/>
+
 </head>
+<body>
 
-<body id="index" class="home">
-<a href="https://github.com/mohd-akram">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-</a>
-        <header id="banner" class="body">
-                <h1><a href="http://mohd-akram.github.io/">Dev Blog </a></h1>
-                <nav><ul>
-                    <li><a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://mohd-akram.github.io/" class="navbar-brand">
+Dev Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://mohd-akram.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python">Choosing which Steam game to play using Python</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2013-11-28T22:00:00">
-                Thu 28 November 2013
-        </abbr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
 
-        <address class="vcard author">
-                By <a class="url fn" href="http://mohd-akram.github.io/author/mohammad-akram">Mohammad Akram</a>
-        </address>
-<p>In <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>. </p>
-<p>tags: <a href="http://mohd-akram.github.io/tag/python">python</a></p>
-</footer><!-- /.post-info --><h2>Introduction</h2>
-<p>Steam sales are a wonderful thing and with the Autumn Sale going on now, a lot of game libraries are going to grow larger by the end of it. For this reason, I thought it might be a good idea to make a random Steam game chooser to give some of those dusty, forgotten games in the games list a chance to be played.</p>
-<h2>Code</h2>
-<p>First, you're going to need a Steam API key which you can get from <a href="http://steamcommunity.com/dev/">here</a>. You'll also need to know your 64-bit Steam ID which you can find from <a href="http://steamidconverter.com/">here</a>. Make sure you have the <a href="https://pypi.python.org/pypi/Pillow">Pillow (PIL)</a> library too. The code is fairly straightforward:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
-<span class="kn">from</span> <span class="nn">urllib.error</span> <span class="kn">import</span> <span class="n">HTTPError</span>
+            <article>
+                <h2><a href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python">Choosing which Steam game to play using Python</a></h2>
+                <div class="summary"><p>A brief look at Steam's API and Tk.</p>
+                    <a class="btn btn-default btn-xs" href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">A Python Developer's Guide to PowerShell</a></h2>
+                <div class="summary"><p>An introduction to PowerShell for Python developers.</p>
+                    <a class="btn btn-default btn-xs" href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">more ...</a>
+                </div>
+            </article>
+            <hr/>
 
-<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">Button</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageTk</span>
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
 
-<span class="n">apikey</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-<span class="n">steamid</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-
-
-<span class="k">def</span> <span class="nf">getownedgames</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span> <span class="n">steamid</span><span class="p">):</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/&#39;</span>
-           <span class="s">&#39;?key={}&amp;steamid={}&amp;include_appinfo=1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span> <span class="n">steamid</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())[</span><span class="s">&#39;response&#39;</span><span class="p">][</span><span class="s">&#39;games&#39;</span><span class="p">]</span>
-
-
-<span class="k">def</span> <span class="nf">getimage</span><span class="p">(</span><span class="n">game</span><span class="p">):</span>
-    <span class="n">imageurl</span> <span class="o">=</span> <span class="s">&#39;http://cdn.steampowered.com/v/gfx/apps/{}/header.jpg&#39;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">imageurl</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;appid&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">playgame</span><span class="p">(</span><span class="n">game</span><span class="p">):</span>
-    <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;steam://rungameid/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;appid&#39;</span><span class="p">]))</span>
-
-
-<span class="k">def</span> <span class="nf">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
-    <span class="n">game</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">getimage</span><span class="p">(</span><span class="n">game</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">HTTPError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
-
-    <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;image&#39;</span><span class="p">],</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">playgame</span><span class="p">(</span><span class="n">game</span><span class="p">))</span>
-
-    <span class="n">tk</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">game</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
-
-<span class="n">games</span> <span class="o">=</span> <span class="n">getownedgames</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span> <span class="n">steamid</span><span class="p">)</span>
-
-<span class="c"># GUI</span>
-<span class="n">tk</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
-<span class="n">tk</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">tk</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">)</span>
-
-<span class="n">gamebutton</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">tk</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">460</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">215</span><span class="p">,</span> <span class="n">bd</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                    <span class="n">bg</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span> <span class="n">activebackground</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span>
-                    <span class="n">relief</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;hand2&#39;</span><span class="p">)</span>
-<span class="n">gamebutton</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-
-<span class="n">changebutton</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">tk</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bd</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                      <span class="n">fg</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span> <span class="n">activeforeground</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span>
-                      <span class="n">bg</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span> <span class="n">activebackground</span><span class="o">=</span><span class="s">&#39;gray11&#39;</span><span class="p">,</span>
-                      <span class="n">relief</span><span class="o">=</span><span class="s">&#39;flat&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s">&#39;hand2&#39;</span><span class="p">,</span>
-                      <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;Segoe UI Semilight&#39;</span><span class="p">,),</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Nope!&#39;</span><span class="p">,</span>
-                      <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">choosegame</span><span class="p">(</span><span class="n">games</span><span class="p">,</span> <span class="n">tk</span><span class="p">,</span> <span class="n">gamebutton</span><span class="p">))</span>
-<span class="n">changebutton</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-
-<span class="n">changebutton</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>
-
-<span class="n">tk</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</pre></div>
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                    <li class="list-group-item"><a href="https://github.com/mohd-akram"><i
+                            class="fa fa-github-square fa-lg"></i> github
+                    </a></li>
+                  </ul>
+                </li>
 
 
-<h2>Explanation</h2>
-<p>The code sets up a Tk window with an image of the game acting as a link to play it and a button underneath to find another random game. The <code>getownedgames</code> function gets a list of the user's Steam games as a JSON object which is converted to a dictionary using the <code>json.loads</code> function from the <code>json</code> module. To open the game, the <code>webbrowser</code> module is used to open the Steam URL of the game in the default handler.</p>
-<p>Sometimes a game doesn't have an image which is why I have the try-except block in the <code>choosegame</code> function. Also, the image is stored in the <code>game</code> dictionary as we need to maintain a reference to any Tk images.</p>
-<p>For the GUI, to make the window non-resizable, <code>tk.resizable(0, 0)</code> is called. Each of the buttons is passed a function for the <code>command</code> argument which is called when the button is pressed. Finally, the <code>choosegame</code> function is called by invoking it through the second button.</p>
-<p>Save the file with a <code>.pyw</code> extension to not show a console window.</p><p>There are <a href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell" rel="bookmark"
-                           title="Permalink to A Python Developer's Guide to PowerShell">A Python Developer's Guide to PowerShell</a></h1>
-                </header>
+                <li class="list-group-item"><a href="http://mohd-akram.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://mohd-akram.github.io/tag/python">
+                                python
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://mohd-akram.github.io/tag/powershell">
+                                powershell
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-05-16T22:00:00">
-                Thu 16 May 2013
-        </abbr>
+        </ul>
+    </section>
 
-        <address class="vcard author">
-                By <a class="url fn" href="http://mohd-akram.github.io/author/mohammad-akram">Mohammad Akram</a>
-        </address>
-<p>In <a href="http://mohd-akram.github.io/category/tutorials">Tutorials</a>. </p>
-<p>tags: <a href="http://mohd-akram.github.io/tag/python">python</a><a href="http://mohd-akram.github.io/tag/powershell">powershell</a></p>
-</footer><!-- /.post-info -->                <p>An introduction to PowerShell for Python developers.</p>
-                <a class="readmore" href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell">read more</a>
-<p>There are <a href="http://mohd-akram.github.io/2013/05/16/a-python-developers-guide-to-powershell#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-            </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2013 mohd-akram
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://mohd-akram.github.io/theme/js/jquery.min.js"></script>
 
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://mohd-akram.github.io/theme/js/bootstrap.min.js"></script>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://mohd-akram.github.io/theme/js/respond.min.js"></script>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+    <!-- Disqus -->
     <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-40999116-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'mohd-akram'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'mohd-akram';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-40999116-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 </body>
 </html>
