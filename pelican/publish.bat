@@ -8,6 +8,7 @@ rmdir /s /q ..\tag
 rmdir /s /q ..\theme
 
 del "..\archives.html"
+del "..\authors.html"
 del "..\categories.html"
 del "..\index.html"
 del "..\tags.html"
