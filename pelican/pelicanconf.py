@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 THEME = 'themes/pelican-bootstrap3'
 
-AUTHOR = 'mohd-akram'
+AUTHOR = 'Mohamed Akram'
 SITENAME = 'Dev Blog'
 CC_LICENSE = 'CC-BY'
 
