@@ -2,7 +2,7 @@ Title: A Python Developer's Guide to PowerShell
 Date: 2013-05-16 22:00
 Tags: python, powershell
 Author: Mohammad Akram
-Summary: An introduction to PowerShell for Python developers. 
+Summary: An introduction to PowerShell for Python developers.
 
 Introduction
 ------------
@@ -57,7 +57,7 @@ $Array = @(5, "ice", 3.14, "cream")
 $Array = (1..10)
 ```
 
-It also supports dictionaries: 
+It also supports dictionaries:
 
 ```powershell
 $Table = @{"a" = "apple"; "b" = "ball"}
@@ -147,12 +147,12 @@ To define a function in PowerShell, use the `Function` keyword:
 ```powershell
 Function Fib($n) {
     if ($n -lt 2) {
-        return $n    
+        return $n
     }
     return (Fib($n - 2)) + (Fib($n - 1))
 }
 ```
-Again, the parentheses around the `Fib` calls are important to properly return a value.   
+Again, the parentheses around the `Fib` calls are important to properly return a value.
 
 List comprehensions
 -------------------
@@ -188,6 +188,7 @@ import os
 from urllib.request import urlopen
 from html.parser import HTMLParser
 
+
 # Parse xkcd page
 class Parser(HTMLParser):
     def __init__(self):
@@ -209,7 +210,7 @@ class Parser(HTMLParser):
 
 def get_xkcd(n=''):
     # Path to xkcd folder on Desktop
-    folder = os.path.join(os.path.expanduser("~"), "Desktop/xkcd")
+    folder = os.path.join(os.path.expanduser('~'), 'Desktop/xkcd')
 
     # If folder doesn't exist, create one
     if not os.path.exists(folder):
@@ -253,8 +254,8 @@ Function GetXkcd($n='') {
     # Uses -f to format string to replace {0} by comic number
     $result = Invoke-WebRequest ("http://xkcd.com/{0}" -f $n)
 
-    # Get 'src' property of second img tag (contains comic url)
-    $url = ($result.AllElements | where tagName -eq img)[1].src
+    # Get URL of image that is a comic
+    $url = ($result.Images | where src -match /comics/).src
 
     # Join folder path with image file name
     $destination =  Join-Path -Path $folder `

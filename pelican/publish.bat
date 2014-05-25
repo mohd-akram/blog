@@ -1,5 +1,6 @@
 @echo off
 
+rmdir /s /q ..\2014
 rmdir /s /q ..\2013
 rmdir /s /q ..\author
 rmdir /s /q ..\category
