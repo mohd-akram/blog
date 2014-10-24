@@ -27,4 +27,4 @@ DELETE_OUTPUT_DIRECTORY = True
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = 'mohd-akram'
-GOOGLE_ANALYTICS = 'UA-40999116-1'
+GOOGLE_ANALYTICS_UNIVERSAL = 'UA-40999116-1'
