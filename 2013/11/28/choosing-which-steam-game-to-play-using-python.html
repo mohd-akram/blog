@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Choosing which Steam game to play using Python - Dev Blog</title>
     <!-- Using the latest rendering mode for IE -->
@@ -12,10 +11,19 @@
 
 <link rel="canonical" href="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python">
 
-        <meta name="author" content="Mohammad Akram" />
+        <meta name="author" content="Mohamed Akram" />
         <meta name="keywords" content="python" />
         <meta name="description" content="A brief look at Steam&#39;s API and Tk." />
 
+        <meta property="og:site_name" content="Dev Blog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Choosing which Steam game to play using Python"/>
+        <meta property="og:url" content="http://mohd-akram.github.io/2013/11/28/choosing-which-steam-game-to-play-using-python"/>
+        <meta property="og:description" content="A brief look at Steam&#39;s API and Tk."/>
+        <meta property="article:published_time" content="2013-11-28" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:author" content="Mohamed Akram" />
 
 
     <!-- Bootstrap -->
@@ -28,11 +36,16 @@
         <link href="http://mohd-akram.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Dev Blog ATOM Feed"/>
 
+
+
+        <link href="http://mohd-akram.github.io/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Dev Blog Tutorials ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -50,17 +63,17 @@ Dev Blog            </a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://mohd-akram.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><a href="http://mohd-akram.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-
     <section id="content">
         <article>
             <header class="page-header">
@@ -78,8 +91,10 @@ Dev Blog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-11-28T22:00:00"> Thu 28 November 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2013-11-28T22:00:00+04:00"> Thu 28 November 2013</time>
     </span>
+
+
 
 
 
@@ -215,20 +230,8 @@ Dev Blog            </a>
 
 
 
-            <li class="list-group-item"><a href="http://mohd-akram.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-                <ul class="list-group " id="tags">
-                    <li class="list-group-item tag-1">
-                        <a href="http://mohd-akram.github.io/tag/python">
-                            python
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
-                        <a href="http://mohd-akram.github.io/tag/powershell">
-                            powershell
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
+
     </ul>
 </section>
             </aside>
@@ -285,5 +288,6 @@ Dev Blog            </a>
         ga('send', 'pageview');
     </script>
     <!-- End Google Analytics Universal Code -->
+
 </body>
 </html>

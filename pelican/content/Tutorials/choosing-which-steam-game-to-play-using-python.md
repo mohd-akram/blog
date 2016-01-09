@@ -1,7 +1,7 @@
 Title: Choosing which Steam game to play using Python
 Date: 2013-11-28 22:00
 Tags: python
-Author: Mohammad Akram
+Author: Mohamed Akram
 Summary: A brief look at Steam's API and Tk.
 
 Introduction
