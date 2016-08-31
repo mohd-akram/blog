@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-THEME = 'themes/pelican-bootstrap3'
+THEME = 'themes/pelican-themes/pelican-bootstrap3'
 
 AUTHOR = 'Mohamed Akram'
 SITENAME = 'Dev Blog'

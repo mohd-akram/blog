@@ -64,7 +64,6 @@ Dev Blog            </a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="http://mohd-akram.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -111,30 +110,30 @@ Dev Blog            </a>
 <h2>Getting started</h2>
 <p>PowerShell is a very powerful scripting language and is cmd.exe's successor. It also comes with a capable IDE which you can use for this tutorial. Find <em>Windows PowerShell ISE</em> in the Start menu or open <em>Windows PowerShell</em> and type the <code>ise</code> command to start it. Now let's write our first program.</p>
 <p>In Python, this is how you'd write a "hello world" program:</p>
-<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;hello, world&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;hello, world&quot;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>It's even easier in PowerShell:</p>
-<div class="highlight"><pre><span class="s2">&quot;hello, world&quot;</span>
+<div class="highlight"><pre><span></span><span class="s2">&quot;hello, world&quot;</span>
 </pre></div>
 
 
 <p>PowerShell automatically outputs any strings to the screen without any command. That's kind of cheating, so here's the explicit way to do it:</p>
-<div class="highlight"><pre><span class="nb">Write-Host</span> <span class="s2">&quot;hello, world&quot;</span>
+<div class="highlight"><pre><span></span><span class="nb">Write-Host</span> <span class="s2">&quot;hello, world&quot;</span>
 </pre></div>
 
 
 <p>The names of PowerShell <em>cmdlets</em> are very consistent. They follow what <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms714428.aspx">Microsoft calls</a> a verb-noun pair convention.</p>
 <h2>Variables</h2>
 <p>Variables are defined by prepending a dollar sign to the variable name.</p>
-<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="n">5</span>
+<div class="highlight"><pre><span></span><span class="nv">$a</span> <span class="p">=</span> <span class="n">5</span>
 <span class="nv">$b</span> <span class="p">=</span> <span class="n">6</span>
 </pre></div>
 
 
 <p>You can also do Python style variable swapping:</p>
-<div class="highlight"><pre><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span> <span class="p">=</span> <span class="nv">$b</span><span class="p">,</span> <span class="nv">$a</span>
+<div class="highlight"><pre><span></span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span> <span class="p">=</span> <span class="nv">$b</span><span class="p">,</span> <span class="nv">$a</span>
 
 <span class="nb">Write-Host</span> <span class="n">a</span><span class="p">=</span><span class="nv">$a</span><span class="p">,</span> <span class="n">b</span><span class="p">=</span><span class="nv">$b</span>
 <span class="nb">Write-Host</span> <span class="p">(</span><span class="nv">$a</span> <span class="p">+</span> <span class="nv">$b</span><span class="p">)</span>
@@ -143,7 +142,7 @@ Dev Blog            </a>
 
 <p>Without parentheses, the second <code>Write-Host</code> command would produce <code>5 + 6</code> instead of <code>11</code>.</p>
 <p>PowerShell also supports arrays with mixed types,</p>
-<div class="highlight"><pre><span class="nv">$Array</span> <span class="p">=</span> <span class="n">2</span><span class="p">,</span> <span class="s2">&quot;cheese&quot;</span><span class="p">,</span> <span class="n">6</span><span class="p">.</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;cake&quot;</span>
+<div class="highlight"><pre><span></span><span class="nv">$Array</span> <span class="p">=</span> <span class="n">2</span><span class="p">,</span> <span class="s2">&quot;cheese&quot;</span><span class="p">,</span> <span class="n">6</span><span class="p">.</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;cake&quot;</span>
 
 <span class="c"># Explicit syntax</span>
 <span class="nv">$Array</span> <span class="p">=</span> <span class="p">@(</span><span class="n">5</span><span class="p">,</span> <span class="s2">&quot;ice&quot;</span><span class="p">,</span> <span class="n">3</span><span class="p">.</span><span class="n">14</span><span class="p">,</span> <span class="s2">&quot;cream&quot;</span><span class="p">)</span>
@@ -154,7 +153,7 @@ Dev Blog            </a>
 
 
 <p>It also supports dictionaries:</p>
-<div class="highlight"><pre><span class="nv">$Table</span> <span class="p">=</span> <span class="p">@{</span><span class="s2">&quot;a&quot;</span> <span class="p">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">;</span> <span class="s2">&quot;b&quot;</span> <span class="p">=</span> <span class="s2">&quot;ball&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nv">$Table</span> <span class="p">=</span> <span class="p">@{</span><span class="s2">&quot;a&quot;</span> <span class="p">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">;</span> <span class="s2">&quot;b&quot;</span> <span class="p">=</span> <span class="s2">&quot;ball&quot;</span><span class="p">}</span>
 <span class="nv">$Table</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s2">&quot;acorn&quot;</span>
 
 <span class="c"># Loop through keys</span>
@@ -166,20 +165,20 @@ Dev Blog            </a>
 
 <h2>Loops</h2>
 <p>What if we wanted to print the numbers from 1 to 10. In Python, it would look like this:</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Similarly, in PowerShell:</p>
-<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="p">(</span><span class="n">1</span><span class="p">..</span><span class="n">10</span><span class="p">))</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="p">(</span><span class="n">1</span><span class="p">..</span><span class="n">10</span><span class="p">))</span> <span class="p">{</span>
     <span class="nb">Write-Host</span> <span class="nv">$i</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <p>You could just as easily use a while loop:</p>
-<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">1</span>
+<div class="highlight"><pre><span></span><span class="nv">$i</span> <span class="p">=</span> <span class="n">1</span>
 <span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-le</span> <span class="n">10</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">Write-Host</span> <span class="nv">$i</span>
     <span class="c"># Increment i</span>
@@ -189,7 +188,7 @@ Dev Blog            </a>
 
 
 <p>Another interesting loop method is do...until:</p>
-<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
+<div class="highlight"><pre><span></span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
 <span class="k">do</span> <span class="p">{</span>
     <span class="nv">$i</span><span class="p">++</span>
     <span class="nb">Write-Host</span> <span class="nv">$i</span>
@@ -199,7 +198,7 @@ Dev Blog            </a>
 
 <h2>Conditions</h2>
 <p>Conditions look slightly different in PowerShell:</p>
-<div class="highlight"><pre><span class="c"># Equal to</span>
+<div class="highlight"><pre><span></span><span class="c"># Equal to</span>
 <span class="nv">$True</span> <span class="o">-eq</span> <span class="nv">$False</span> <span class="c"># False</span>
 <span class="c"># Not equal to</span>
 <span class="nv">$True</span> <span class="o">-ne</span> <span class="nv">$False</span> <span class="c"># True</span>
@@ -217,7 +216,7 @@ Dev Blog            </a>
 
 
 <p>PowerShell supports the same logical operators as Python including <code>-and</code>, <code>-or</code>, and <code>-not</code>.</p>
-<div class="highlight"><pre><span class="c"># Logical operators</span>
+<div class="highlight"><pre><span></span><span class="c"># Logical operators</span>
 <span class="nv">$Happy</span> <span class="p">=</span> <span class="nv">$True</span>
 <span class="nv">$KnowIt</span> <span class="p">=</span> <span class="nv">$True</span>
 
@@ -229,7 +228,7 @@ Dev Blog            </a>
 
 <h2>Functions</h2>
 <p>A typical Fibonacci function in Python looks like this:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">n</span>
     <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -237,7 +236,7 @@ Dev Blog            </a>
 
 
 <p>To define a function in PowerShell, use the <code>Function</code> keyword:</p>
-<div class="highlight"><pre><span class="k">Function</span> <span class="n">Fib</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="k">Function</span> <span class="n">Fib</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">-lt</span> <span class="n">2</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$n</span>
     <span class="p">}</span>
@@ -249,23 +248,23 @@ Dev Blog            </a>
 <p>Again, the parentheses around the <code>Fib</code> calls are important to properly return a value.</p>
 <h2>List comprehensions</h2>
 <p>To get a list of all the multiples of 2 from 1 to 20, you'd do this in Python:</p>
-<div class="highlight"><pre><span class="n">multiples</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">multiples</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 
 <p>PowerShell:</p>
-<div class="highlight"><pre><span class="nv">$Multiples</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nv">$Multiples</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span>
 </pre></div>
 
 
 <p>The list comprehensions are somewhat different than in Python and make use of piping, which is a very powerful tool in PowerShell. In this case, a range from 1 to 20 is piped to the <code>Where-Object</code> command which filters the list of items according to the condition <code>$_ % 2 -eq 0</code>. The <code>$_</code> variable essentially refers to each item in a list of objects.</p>
 <p>To do an operation on each multiple of two, say find its square, we pipe the multiples to the <code>ForEach-Object</code>:</p>
-<div class="highlight"><pre><span class="nv">$Squares</span> <span class="p">=</span> <span class="nv">$Multiples</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nv">$Squares</span> <span class="p">=</span> <span class="nv">$Multiples</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
 </pre></div>
 
 
 <p>You can also do it all on one line:</p>
-<div class="highlight"><pre><span class="nv">$Squares</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="p">?</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="nv">$Squares</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">20</span> <span class="p">|</span> <span class="p">?</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">%</span> <span class="n">2</span> <span class="o">-eq</span> <span class="n">0</span><span class="p">}</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span><span class="nv">$_</span> <span class="p">*</span> <span class="nv">$_</span><span class="p">}</span>
 </pre></div>
 
 
@@ -273,12 +272,12 @@ Dev Blog            </a>
 <h2>Example program</h2>
 <p>I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a "xkcd" folder on the Desktop.</p>
 <p>Python:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
 <span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
 
 
-<span class="c"># Parse xkcd page</span>
+<span class="c1"># Parse xkcd page</span>
 <span class="k">class</span> <span class="nc">Parser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
@@ -286,48 +285,48 @@ Dev Blog            </a>
 
     <span class="k">def</span> <span class="nf">handle_starttag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
         <span class="n">attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
-        <span class="c"># If found &#39;comic&#39; div, then next img has comic link</span>
-        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s">&#39;div&#39;</span> <span class="ow">and</span> <span class="s">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;comic&#39;</span><span class="p">:</span>
+        <span class="c1"># If found &#39;comic&#39; div, then next img has comic link</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;div&#39;</span> <span class="ow">and</span> <span class="s1">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;comic&#39;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span> <span class="o">=</span> <span class="bp">True</span>
 
-        <span class="c"># Set self.url to comic image url</span>
-        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s">&#39;img&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="s">&#39;src&#39;</span><span class="p">]</span>
+        <span class="c1"># Set self.url to comic image url</span>
+        <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;img&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_comic</span> <span class="o">=</span> <span class="bp">False</span>
 
 
-<span class="k">def</span> <span class="nf">get_xkcd</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
-    <span class="c"># Path to xkcd folder on Desktop</span>
-    <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~&#39;</span><span class="p">),</span> <span class="s">&#39;Desktop/xkcd&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_xkcd</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="c1"># Path to xkcd folder on Desktop</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;Desktop/xkcd&#39;</span><span class="p">)</span>
 
-    <span class="c"># If folder doesn&#39;t exist, create one</span>
+    <span class="c1"># If folder doesn&#39;t exist, create one</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
 
-    <span class="c"># Download comic page</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://xkcd.com/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="c1"># Download comic page</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://xkcd.com/{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 
-    <span class="c"># Get image url from parser</span>
+    <span class="c1"># Get image url from parser</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
 
-    <span class="n">image_name</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">image_name</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">image_name</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
-<span class="c"># Get a bunch of comics</span>
+<span class="c1"># Get a bunch of comics</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">1212</span><span class="p">):</span>
     <span class="n">get_xkcd</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Downloaded xkcd #{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Downloaded xkcd #{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
 
 
 <p>PowerShell:</p>
-<div class="highlight"><pre><span class="c"># Function to download xkcd comic. Get latest one if no $n is provided</span>
+<div class="highlight"><pre><span></span><span class="c"># Function to download xkcd comic. Get latest one if no $n is provided</span>
 <span class="k">Function</span> <span class="n">GetXkcd</span><span class="p">(</span><span class="nv">$n</span><span class="p">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="c"># Path to xkcd folder on Desktop.</span>
     <span class="c"># [Environment] is a .NET class with static method GetFolderPath.</span>
@@ -432,7 +431,7 @@ Dev Blog            </a>
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2013 Mohamed Akram
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/80x15.png" /></a>
     Content
