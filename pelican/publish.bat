@@ -18,4 +18,4 @@ del "..\tags.html"
 
 @echo on
 
-pelican -s publishconf.py -o ..\
+pelican -q -s publishconf.py -o ..\

@@ -1,1 +1,1 @@
-pelican -o ..\
+pelican -q -o ..\
