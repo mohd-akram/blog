@@ -1,4 +1,0 @@
-My Blog
-=======
-
-Uses Pelican

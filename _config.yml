@@ -1,0 +1,18 @@
+title: cease the dev
+
+description: >
+  The footer would look weird if there was just empty space instead of this
+  description.
+
+author: Mohamed Akram
+email: mohd.akram@outlook.com
+
+github_username: mohd-akram
+twitter_username: tixilite
+
+disqus:
+  shortname: mohd-akram
+
+google_analytics: UA-40999116-1
+
+theme: minima
