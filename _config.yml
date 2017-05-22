@@ -16,3 +16,5 @@ disqus:
 google_analytics: UA-40999116-1
 
 theme: minima
+
+permalink: /:categories/:year/:month/:day/:title
