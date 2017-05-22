@@ -5,12 +5,19 @@ title: Choosing Which Steam Game to Play Using Python
 Introduction
 ------------
 
-Steam sales are a wonderful thing and with the Autumn Sale going on now, a lot of game libraries are going to grow larger by the end of it. For this reason, I thought it might be a good idea to make a random Steam game chooser to give some of those dusty, forgotten games in the games list a chance to be played.
+Steam sales are a wonderful thing and with the Autumn Sale going on now, a lot
+of game libraries are going to grow larger by the end of it. For this reason, I
+thought it might be a good idea to make a random Steam game chooser to give
+some of those dusty, forgotten games in the games list a chance to be played.
 
 Code
 ----
 
-First, you're going to need a Steam API key which you can get from [here](http://steamcommunity.com/dev/). You'll also need to know your 64-bit Steam ID which you can find from [here](http://steamidconverter.com/). Make sure you have the [Pillow (PIL)](https://pypi.python.org/pypi/Pillow) library too. The code is fairly straightforward:
+First, you're going to need a Steam API key which you can get from
+[here](http://steamcommunity.com/dev/). You'll also need to know your 64-bit
+Steam ID which you can find from [here](http://steamidconverter.com/). Make
+sure you have the [Pillow (PIL)](https://pypi.python.org/pypi/Pillow) library
+too. The code is fairly straightforward:
 
 ```python
 import json
@@ -84,10 +91,20 @@ tk.mainloop()
 Explanation
 -----------
 
-The code sets up a Tk window with an image of the game acting as a link to play it and a button underneath to find another random game. The `getownedgames` function gets a list of the user's Steam games as a JSON object which is converted to a dictionary using the `json.loads` function from the `json` module. To open the game, the `webbrowser` module is used to open the Steam URL of the game in the default handler.
+The code sets up a Tk window with an image of the game acting as a link to play
+it and a button underneath to find another random game. The `getownedgames`
+function gets a list of the user's Steam games as a JSON object which is
+converted to a dictionary using the `json.loads` function from the `json`
+module. To open the game, the `webbrowser` module is used to open the Steam URL
+of the game in the default handler.
 
-Sometimes a game doesn't have an image which is why I have the try-except block in the `choosegame` function. Also, the image is stored in the `game` dictionary as we need to maintain a reference to any Tk images.
+Sometimes a game doesn't have an image which is why I have the try-except block
+in the `choosegame` function. Also, the image is stored in the `game`
+dictionary as we need to maintain a reference to any Tk images.
 
-For the GUI, to make the window non-resizable, `tk.resizable(0, 0)` is called. Each of the buttons is passed a function for the `command` argument which is called when the button is pressed. Finally, the `choosegame` function is called by invoking it through the second button.
+For the GUI, to make the window non-resizable, `tk.resizable(0, 0)` is called.
+Each of the buttons is passed a function for the `command` argument which is
+called when the button is pressed. Finally, the `choosegame` function is called
+by invoking it through the second button.
 
 Save the file with a `.pyw` extension to not show a console window.
