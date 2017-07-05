@@ -19,5 +19,6 @@ theme: minima
 
 gems:
   - jekyll-feed
+  - jekyll-seo-tag
 
 permalink: /posts/:title
