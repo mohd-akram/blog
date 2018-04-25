@@ -107,40 +107,38 @@ for await (const [i, char] of read(filename))
   console.log(char);
 ```
 
-The first gotcha here is that you can't yet run this in Node without passing
-the `--harmony_async_iteration` flag.
-
-Everything worked great after that, until I started doing some profiling and
-noticed that performance was kind of bad. After doing a bit of searching I
-found that [someone had already written about this 8 months
+Everything worked great, until I started doing some profiling and noticed that
+performance was kind of bad. After doing a bit of searching I found that
+[someone had already written about this 8 months
 ago](https://medium.com/netscape/async-iterators-these-promises-are-killing-my-performance-4767df03d85b)
 for an essentially identical use case.
 
-I wanted to do [my own
-test](https://twitter.com/tixilite/status/982234127670788097) to confirm if
-this was still the case or if the
+I wanted to do my own test to confirm if this was still the case or if the
 bottleneck was elsewhere and used the following code:
 
 ```javascript
-#!/usr/bin/env node --harmony_async_iteration
 function* loop() {
   for (let i = 0; i < 1e6; i++)
     yield i;
 }
+
 async function* loop2() {
   for (let i = 0; i < 1e6; i++)
     yield i;
 }
-(async function main() {
+
+async function main() {
   console.time('loop'); for (const i of loop()) ;
   console.timeEnd('loop');
   console.time('loop2'); for await (const i of loop2()) ;
   console.timeEnd('loop2');
-})();
+}
+
+main();
 ```
 
 It turns out simply adding the `async` keyword to a generator is enough to make
-it 25x slower, even if there is no async code in it.
+it 10x slower, even if there is no async code in it.
 
 Once again, I went to Python to see what the situation was there:
 
