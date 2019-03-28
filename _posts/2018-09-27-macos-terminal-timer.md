@@ -11,6 +11,18 @@ Here's how to set up a macOS terminal timer that uses notifications:
    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.atrun.plist
    ```
 
+   If you're on macOS Mojave or higher, you'll also need to give `atrun` and
+   Terminal full disk access. To do so:
+
+   1. Open [System Preferences > Security & Privacy > Privacy > Full Disk
+      Access](x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles)
+      and click the lock to make changes.
+
+   2. Click the + button to open the file dialog and use Command + Shift + G to
+      go to `/usr/libexec/atrun` and open it.
+
+   3. Repeat the process for `/Applications/Utilities/Terminal.app`.
+
 2. Install `reattach-to-user-namespace`:
 
     - Homebrew: `brew install reattach-to-user-namespace`
