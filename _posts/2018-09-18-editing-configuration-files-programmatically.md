@@ -1,5 +1,6 @@
 ---
 title: Editing Configuration Files Programmatically
+description: Using sed to edit configuration files programmatically.
 ---
 
 Introduction

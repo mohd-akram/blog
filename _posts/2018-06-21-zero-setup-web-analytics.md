@@ -1,5 +1,7 @@
 ---
 title: Zero-Setup Web Analytics
+description: >
+  Using GoAccess to get a visual analysis of web traffic with little effort.
 ---
 
 I recently discovered [GoAccess](https://goaccess.io) which is a great tool for

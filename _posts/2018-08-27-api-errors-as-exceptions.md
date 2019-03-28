@@ -1,5 +1,6 @@
 ---
 title: API Errors As Exceptions
+description: A way to map API errors to JavaScript errors.
 ---
 
 Here's a very simple and familiar way to implement errors in your JSON API

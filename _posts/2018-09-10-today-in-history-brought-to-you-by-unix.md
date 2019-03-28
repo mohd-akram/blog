@@ -1,5 +1,8 @@
 ---
 title: Today in History, Brought to You by UNIX
+description: >
+  The UNIX calendar utility helps you remember important dates, and its
+  development has an interesting history.
 ---
 
 I accidentally came across a very interesting UNIX utility, `calendar`. Despite

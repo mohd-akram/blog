@@ -1,5 +1,6 @@
 ---
 title: macOS Terminal Timer
+description: Create timers that notify you when they're done in macOS.
 ---
 
 Here's how to set up a macOS terminal timer that uses notifications:

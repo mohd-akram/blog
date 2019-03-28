@@ -1,5 +1,7 @@
 ---
 title: JavaScript Generator Gotchas
+description: >
+  Things to be aware of when using JavaScript generators, including async ones.
 ---
 
 I've been using JavaScript generators in Node recently and discovered some

@@ -1,5 +1,6 @@
 ---
 title: Color-Coding Dots in CSS
+description: Learn to create color-coding dots by abusing CSS.
 ---
 
 I used this technique for a grid of images where I needed to color-code them,

@@ -1,5 +1,6 @@
 ---
 title: A Python Developer's Guide to Powershell
+description: An introduction to PowerShell for Python developers.
 ---
 
 Introduction

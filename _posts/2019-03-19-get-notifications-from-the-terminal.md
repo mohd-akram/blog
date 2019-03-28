@@ -1,5 +1,8 @@
 ---
 title: Get Notifications From the Terminal
+description: >
+  Learn how to get push notifications from your terminal to your phone and
+  desktop, including automatic notifcations for long-running processes.
 ---
 
 Often I'd run a long-running process and want to know when it ends when I'm

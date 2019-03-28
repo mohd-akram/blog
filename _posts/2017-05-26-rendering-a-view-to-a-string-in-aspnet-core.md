@@ -1,5 +1,7 @@
 ---
 title: Rendering a View to a String in ASP.NET Core
+description: >
+  Render views as strings from your controller with ease in ASP.NET Core.
 ---
 
 First, add `ICompositeViewEngine` to your controller:

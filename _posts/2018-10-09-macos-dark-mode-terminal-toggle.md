@@ -1,5 +1,6 @@
 ---
 title: macOS Terminal Dark Mode Toggle
+description: Toggle dark mode from your terminal in macOS Mojave and greater.
 ---
 
 Add to `~/.profile`:

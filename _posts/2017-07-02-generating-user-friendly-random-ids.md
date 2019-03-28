@@ -1,5 +1,8 @@
 ---
 title: Generating User-Friendly Random IDs
+description: >
+  A solution for generating short, user-friendly random IDs that are easy to
+  pass around.
 ---
 
 I stumbled upon the problem of generating short, user-friendly random IDs for a

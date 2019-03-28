@@ -1,5 +1,8 @@
 ---
 title: Choosing Which Steam Game to Play Using Python
+description: >
+  Using Python, Tk and the Steam API to create a simple app that helps you
+  decide which Steam game to play in your growing library.
 ---
 
 Introduction

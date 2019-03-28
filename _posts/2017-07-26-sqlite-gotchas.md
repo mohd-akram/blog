@@ -1,5 +1,6 @@
 ---
 title: SQLite Gotchas
+description: Things to keep in mind when using SQLite.
 ---
 
 - Primary keys can be `NULL` [1].

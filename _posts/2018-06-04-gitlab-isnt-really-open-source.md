@@ -1,5 +1,8 @@
 ---
 title: GitLab Isn’t Really Open-Source
+description: >
+  GitLab's open-source version is missing several features present in its
+  proprietary one.
 ---
 
 Microsoft [recently
