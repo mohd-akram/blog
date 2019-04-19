@@ -39,7 +39,7 @@ Write-Host "hello, world"
 ```
 
 The names of PowerShell *cmdlets* are very consistent. They follow what
-[Microsoft calls](http://msdn.microsoft.com/en-us/library/windows/desktop/ms714428.aspx)
+[Microsoft calls](https://docs.microsoft.com/en-us/powershell/developer/cmdlet/approved-verbs-for-windows-powershell-commands)
 a verb-noun pair convention.
 
 Variables
