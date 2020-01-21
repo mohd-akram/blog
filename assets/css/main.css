@@ -1,0 +1,34 @@
+:root { --code: #5e6687 }
+@media (prefers-color-scheme: dark) { :root { --code: #979db4 } }
+
+code, pre {
+  font-family: Consolas, monospace;
+}
+
+.posts {
+  list-style: none;
+  padding-left: 0;
+}
+
+.posts li {
+  margin-top: 2rem;
+}
+
+.posts li h2 {
+  margin-top: 0.5rem;
+}
+
+[itemprop=author] {
+  margin-left: 0.5rem;
+}
+
+.icons {
+  float: right;
+}
+
+.icons .icon {
+  color: var(--text-main);
+  fill: currentColor;
+  width: 16px;
+  height: 16px;
+}

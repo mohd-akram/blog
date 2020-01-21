@@ -3,18 +3,25 @@ title: seize the dev
 author: Mohamed Akram
 email: mohd.akram@outlook.com
 
-github_username: mohd-akram
-twitter_username: tixilite
+social:
+  github: mohd-akram
+  twitter: tixilite
 
 disqus:
   shortname: mohd-akram
 
 google_analytics: UA-40999116-1
 
-theme: minima
-
-gems:
+plugins:
   - jekyll-feed
   - jekyll-sitemap
 
 permalink: /posts/:title
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: posts
+    values:
+      author: Mohamed Akram

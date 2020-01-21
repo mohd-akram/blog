@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+{%- include icons.html -%}
+<h1>{{ site.title }}</h1>
+
+{{ content }}
+
+{%- if site.posts.size > 0 -%}
+<ul class="posts">
+  {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
+  {%- for post in site.posts -%}
+  <li>
+    <time>{{ post.date | date: date_format }}</time>
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+    {{ post.description }}
+  </li>
+  {%- endfor -%}
+</ul>
+
+<a href="{{ 'feed.xml' | relative_url }}">Subscribe</a>
+{%- endif -%}
