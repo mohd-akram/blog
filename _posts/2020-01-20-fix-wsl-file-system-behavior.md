@@ -15,13 +15,11 @@ tools. To fix them, do the following:
    options="metadata,case=dir,umask=22,fmask=111"
    ```
 
-   If you're on a Windows version prior to Windows 10, version 1909 (you can
-   check by running `reg query "HKLM\SOFTWARE\Microsoft\Windows
-   NT\CurrentVersion" /v ReleaseId` in Windows), you'll also need to add `umask
-   022` to `~/.profile`. This can be done by running `echo "umask 022" >>
-   ~/.profile` in WSL to add it to the end of the file.
+2. Check your umask setting by running `umask` in WSL. If it's `0000`, you'll
+   need to add `umask 022` to `~/.profile`. This can be done by running `echo
+   "umask 022" >> ~/.profile` to add it to the end of the file.
 
-2. Close all instances of WSL then run `wsl -t distribution_name` replacing
+3. Close all instances of WSL then run `wsl -t distribution_name` replacing
    `distribution_name` with the name of your distribution. To get a list of
    them, run `wsl -l`.
 
@@ -51,7 +49,7 @@ which allows accessing Windows files from WSL. These changes do the following:
 While the automount options will affect files in DrvFs, they have no effect on
 files created in the regular filesystem. There, the default permissions are 777
 for directories and 666 for files. These are then modified by a system umask.
-In versions of Windows prior to Windows 10, version 1909, the system umask is
-[not applied](https://github.com/microsoft/WSL/issues/352) resulting in a umask
-of 0, giving everyone write permissions. Setting a umask of 022 in the shell's
-`~/.profile` fixes this. You can verify the current umask by running `umask`.
+In current versions of Windows 10, the system umask is [not
+applied](https://github.com/microsoft/WSL/issues/352) resulting in a umask of
+0, giving everyone write permissions. Setting a umask of 022 in the shell's
+`~/.profile` fixes this.
