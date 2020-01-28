@@ -1,19 +1,24 @@
 ---
 title: Editing Configuration Files Programmatically
-description: Using sed to edit configuration files programmatically.
+description: Using ex to edit configuration files programmatically.
 ---
 
 Introduction
 ------------
 
-`sed` is a very powerful tool for editing configuration files. The examples
-below use it extensively, including the `-i` flag for editing configuration
-files in place. To avoid mistakes, first examine your changes by comparing
-`sed`'s output with the original file:
+`ex` is a very powerful tool for editing configuration files. Its syntax
+consists of a string of commands delimited by newlines or `|`. The `x` command
+saves the file and quits ex. To avoid mistakes, first examine your changes by
+replacing the `x` with `%p` and comparing `ex`'s output with the original file:
 
 ```shell
-sed $commands $file | diff -u $file -
+echo $commands | ex $file | diff -u $file -
 ```
+
+Note: The shell variables used throughout this post are for illustration
+purposes only and should be replaced with actual values as shown in the
+examples. It's advisable to use a configuration utility where possible and
+resort to `ex` only when necessary.
 
 Recipes
 -------
@@ -23,13 +28,13 @@ Recipes
 Form:
 
 ```shell
-sed -i "/$pattern/s/^/#/" $file
+echo "/$pattern/s/^/#/ | x" | ex $file
 ```
 
 Example:
 
 ```shell
-sed -i '/^PermitRootLogin yes/s/^/#/' /etc/ssh/sshd_config
+echo '/^PermitRootLogin yes/s/^/#/ | x' | ex /etc/ssh/sshd_config
 ```
 
 ### Uncomment a line
@@ -37,13 +42,13 @@ sed -i '/^PermitRootLogin yes/s/^/#/' /etc/ssh/sshd_config
 Form:
 
 ```shell
-sed -i "/$pattern/s/^#//" $file
+echo "/$pattern/s/^#// | x" | ex $file
 ```
 
 Example:
 
 ```shell
-sed -i '/^#net.ipv4.ip_forward=1/s/^#//' /etc/sysctl.conf
+echo '/^#net.ipv4.ip_forward=1/s/^#// | x' | ex /etc/sysctl.conf
 ```
 
 ### Add a new line
@@ -65,17 +70,19 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 Form:
 
 ```shell
-sed -i "/$pattern/c\\
+echo "/$pattern/c
 $replacement
-" $file
+.
+x" | ex $file
 ```
 
 Example:
 
 ```shell
-sed -i '/^DNS1=/c\
+echo '/^DNS1=/c
 DNS1=1.1.1.1
-' /etc/sysconfig/network-scripts/ifcfg-eth0
+.
+x' | ex /etc/sysconfig/network-scripts/ifcfg-eth0
 ```
 
 ### Add a line after an existing one
@@ -83,41 +90,41 @@ DNS1=1.1.1.1
 Form:
 
 ```shell
-sed -i "/$pattern/a\\
+echo "/$pattern/a
 $replacement
-" $file
+.
+x" | ex $file
 ```
 
 Example:
 
 ```shell
-sed -i '/^DNS1=/a\
+echo '/^DNS1=/a
 DNS2=1.0.0.1
-' /etc/sysconfig/network-scripts/ifcfg-eth0
+.
+x' | ex /etc/sysconfig/network-scripts/ifcfg-eth0
 ```
+
+Use the `i` command instead of `a` to add a line before an existing one.
 
 ### Multiple edits
 
 Form:
 
 ```shell
-sed -i "
-# Optional comment describing command_1
+echo "
 $command_1
-# Optional comment describing command_n
 $command_n
-" $file
+x" | ex $file
 ```
 
 Example:
 
 ```shell
-sed -i '
-# Forward IPv4 packets
+echo '
 /^#net.ipv4.ip_forward=1/s/^#//
-# Forward IPv6 packets
 /^#net.ipv6.conf.all.forwarding=1/s/^#//
-' /etc/sysctl.conf
+x' | ex /etc/sysctl.conf
 ```
 
 ### Edit a group of lines
@@ -125,15 +132,15 @@ sed -i '
 Form:
 
 ```shell
-sed -i "/$begin_pattern/,/$end_pattern/$function" $file
+echo "/$begin_pattern/,/$end_pattern/$command | x" | ex $file
 ```
 
 Example:
 
 ```shell
 # Disable Apache indexes in /var/www
-sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/s/ Indexes//' \
-	/etc/apache2/apache2.conf
+echo '/<Directory \/var\/www\/>/,/<\/Directory>/s/ Indexes// | x' |
+	ex /etc/apache2/apache2.conf
 ```
 
 ### Combining actions
@@ -141,45 +148,22 @@ sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/s/ Indexes//' \
 Form:
 
 ```shell
-sed -i "/$pattern/{
-$function_1
-$function_n
-}" $file
+echo "/$pattern/
+$command_1
+$command_n
+x" | ex $file
 ```
 
 Example:
 
 ```shell
 # Change DNS1 and add DNS2 after it
-sed -i '/^DNS1=/{
-a\
-DNS2=1.0.0.1
-c\
+echo '/^DNS1=/
+c
 DNS1=1.1.1.1
-}' /etc/sysconfig/network-scripts/ifcfg-eth0
-```
-
-Tips
-----
-
-- Do `sed $commands $file > $file.new && mv $file.new $file` instead of using
-  the `-i` flag for portability.
-
-- The `-n` option can be used to output only the lines affected by the `sed`
-commands instead of the entire file.
-
-- Use the `p` function combined with `-n` to print matching lines (like
-  `grep`).
-
-- Use the `i\` function instead of `a\` to add a line before an existing one.
-
-- If there are many forward slashes in your pattern, you can use a different
-  delimiter:
-
-```shell
-# Before
-sed -n '/<Directory \/var\/www\/>/p' /etc/apache2/apache2.conf
-
-# After (using | as a delimiter)
-sed -n '\|<Directory /var/www/>|p' /etc/apache2/apache2.conf
+.
+a
+DNS2=1.0.0.1
+.
+x' | ex /etc/sysconfig/network-scripts/ifcfg-eth0
 ```
