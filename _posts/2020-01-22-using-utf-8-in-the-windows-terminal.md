@@ -21,7 +21,7 @@ steps, you can have a UTF-8 workflow.
    [Windows Powershell
    profile](https://github.com/microsoft/terminal/blob/master/doc/user-docs/UsingJsonSettings.md).
 4. Enable the new UTF-8 option in Windows settings. Go to the [language
-   settings](ms-settings:regionlanguage), click *Administrative languages
+   settings](ms-settings:regionlanguage), click *Administrative language
    settings*, then *Change system locale...* and tick the *Beta: Use Unicode
    UTF-8 for worldwide language support* option.
 5. Restart your computer.
