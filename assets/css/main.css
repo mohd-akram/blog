@@ -5,6 +5,12 @@ code, pre {
   font-family: Consolas, monospace;
 }
 
+/* Fix overflow - https://github.com/kognise/water.css/issues/174 */
+table {
+  display: block;
+  overflow: auto;
+}
+
 .posts {
   list-style: none;
   padding-left: 0;
