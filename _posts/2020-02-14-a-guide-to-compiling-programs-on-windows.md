@@ -540,3 +540,53 @@ LINKFLAGS=/entry:mainCRTStartup /subsystem:windows
 Now, run `nmake` and then `tada` - you should hear the tada sound! You can
 build and run the same code on a UNIX machine (you can build it in WSL too, but
 sound won't work when you run the program).
+
+Using CMake
+-----------
+
+For more complex projects, it might be beneficial to use CMake. CMake lets you
+generate Makefiles, Visual Studio project files, and [myriad
+others](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html)
+that can be used to build your project on different platforms. Conveniently,
+Visual Studio comes with CMake and should have been installed when you
+installed the C++ build tools. If not, use the Visual Studio installer to add
+it. To use CMake, add
+`%VSInstallDir%Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin` to your
+`PATH`.
+
+To build the project with CMake, create a `CMakeLists.txt` file in the project
+directory with the following:
+
+```cmake
+cmake_minimum_required(VERSION 3.13)
+project(tada)
+find_package(SDL2 REQUIRED)
+add_executable(tada main.c)
+target_link_libraries(tada SDL2::SDL2)
+
+if(MSVC)
+  target_link_options(tada PUBLIC /entry:mainCRTStartup /subsystem:windows)
+endif()
+```
+
+The first two lines specify the minimum supported CMake version and the name of
+the project. The `find_package` command adds the SDL2 library to the project.
+The `add_executable` command specifies the name of the output executable
+(`tada`) and its prerequisite files. Finally, the `target_link_libraries`
+command specifies the libraries that will be linked to generate the given
+target, in this case the executable `tada`. You can get the names to use for
+the `find_package` and `target_link_libraries` commands from vcpkg - it prints
+them after installing a package. The last part checks if the compiler is the
+Visual Studio one by checking the `MSVC` variable and then appends the same
+linker flags as before.
+
+Now, create a directory called `build` in the project folder and `cd` into it.
+We will run CMake in this directory as it generates a lot of files that would
+otherwise mess up the main folder. Then, run `cmake
+-DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%\scripts\buildsystems\vcpkg.cmake ..` to
+generate the project files that will be used to build the project. The
+`CMAKE_TOOLCHAIN_FILE` option helps CMake find the libraries installed by
+vcpkg. Finally, run `cmake --build .` to build the project. Once it's done, you
+should find the program in the `Debug` folder, and can run it via `Debug/tada`.
+To build a release version, add `-DCMAKE_BUILD_TYPE=Release` to the first
+command and `--config Release` to the second.
