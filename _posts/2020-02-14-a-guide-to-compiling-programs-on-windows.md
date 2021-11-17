@@ -53,12 +53,12 @@ environment variables to use these tools. Hit the Windows key and search for
 to edit the *User variables* and not the *System variables*.
 
 For simplicity, the rest of this post will assume the latest version of Visual
-Studio (currently 2019) and a 64-bit version of Windows 10. The first
+Studio (currently 2022) and a 64-bit version of Windows 10. The first
 environment variable to be set is the location of our new installation:
 
 | Variable       | Value |
 |----------------|-------|
-| `VSInstallDir` | `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\` |
+| `VSInstallDir` | `C:\Program Files\Microsoft Visual Studio\2022\BuildTools\` |
 
 Then, add `%VSInstallDir%VC\Auxiliary\Build` to your `PATH` variable.
 
@@ -101,7 +101,7 @@ add the following environment variable:
 
 | Variable            | Value |
 |---------------------|-------|
-| `VCToolsInstallDir` | `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\xx.xx.xxxxx\`
+| `VCToolsInstallDir` | `C:\Program Files\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\xx.xx.xxxxx\`
 
 Replace the `xx.xx.xxxxx` with the current version of the compiler which you
 can get by running `dir /b "%VSInstallDir%VC\Tools\MSVC"`. You might need to
