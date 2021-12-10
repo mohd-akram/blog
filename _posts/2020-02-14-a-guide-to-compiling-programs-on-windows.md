@@ -309,11 +309,6 @@ Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701) for
 this. If all goes well, you'll be experiencing the full fruits of Unicode
 without any extra effort!
 
-Note: If you use [CMake](https://cmake.org/), you'll need a version > 3.16.4
-when [using this setting](https://gitlab.kitware.com/cmake/cmake/issues/20320).
-The vcpkg section below will require CMake (Visual Studio includes CMake, but
-the version may be outdated - make sure the new version is added to your path).
-
 Using a Makefile
 ----------------
 
@@ -386,25 +381,16 @@ This is done by creating an additional Windows-specific makefile called
 ```makefile
 [NMAKE]
 EXEEXT=.exe
-
-LIBS=winmm.lib
-LINKFLAGS=/entry:mainCRTStartup /subsystem:windows
-
-!if [set _CL_=/link $(LINKFLAGS)]
-!endif
+LDLIBS=winmm.lib
+LDFLAGS=/link /entry:mainCRTStartup /subsystem:windows
 ```
 
 And the main Makefile:
 
 ```makefile
 tada$(EXEEXT): main.c
-	$(CC) -o $@ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) main.c $(LIBS)
+	$(CC) -o $@ $(CPPFLAGS) $(CFLAGS) main.c $(LDLIBS) $(LDFLAGS)
 ```
-
-The `_CL_` environment variable allows appending options to the compiler, `cl`.
-Using the `!if` directive and the `set` command, this can be done in
-`tools.ini` for Windows-specific options. To prepend options, the `CL`
-environment variable can be used.
 
 `$@` in the rule refers to the output, in this case `tada$(EXEEXT)`.
 
@@ -429,7 +415,7 @@ Run the following to install vcpkg in your preferred directory (the home
 directory is a good choice):
 
 ```shell
-git clone https://github.com/Microsoft/vcpkg.git
+git clone https://github.com/microsoft/vcpkg.git
 cd vcpkg
 bootstrap-vcpkg
 ```
@@ -505,36 +491,21 @@ int main(int argc, char *argv[])
 Then, modify the `Makefile` to this:
 
 ```makefile
-# POSIX \
-!if 0
-LIBS=-lSDL2
-# \
-!endif
-
 tada$(EXEEXT): main.c
-	$(CC) -o $@ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) main.c $(LIBS)
+	$(CC) -o $@ $(CPPFLAGS) $(CFLAGS) main.c $(LDLIBS) $(LDFLAGS)
+
+LDLIBS=-lSDL2
 ```
 
-This adds the SDL2 library for POSIX/UNIX machines. Traditional `make` will
-read the `!if` and `!endif` lines (which are `nmake`-specific directives) as a
-continuation of the comments above them due to the backslash, thereby ignoring
-them. However, `nmake` does not recognize the backslash as a line-continuation
-character for comments and will therefore process the directives, effectively
-ignoring the body of the `!if` directive. This way, `LIBS` is set to `-lSDL2`
-only on UNIX machines.
-
-We'll handle the SDL2 dependency for Windows in `tools.ini`. Modify it to the
-following, adding `SDL2.lib` to `LIBS`:
+This adds the SDL2 library for POSIX/UNIX machines. `LDLIBS` is specified after
+the make rule so that it can be overridden on Windows. Modify `tools.ini` to
+the following, adding `SDL2.lib` to `LDLIBS`:
 
 ```makefile
 [NMAKE]
 EXEEXT=.exe
-
-LIBS=SDL2.lib
-LINKFLAGS=/entry:mainCRTStartup /subsystem:windows
-
-!if [set _CL_=/link $(LINKFLAGS)]
-!endif
+LDLIBS=SDL2.lib
+LDFLAGS=/link /entry:mainCRTStartup /subsystem:windows
 ```
 
 Now, run `nmake` and then `tada` - you should hear the tada sound! You can
