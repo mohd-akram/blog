@@ -110,8 +110,7 @@ three dots instead of one. To color them, we use a `linear-gradient` with hard
 stops placed just between each dot (at 33% and 67%), essentially faking three
 separate solid colors. Since CSS gradients apply to backgrounds instead of
 text, we use `background-clip: text` to apply it to the text dots instead. All
-this because we can't use multiple `::after` pseudo-elements
-[(yet)](http://realworldvalidator.com/css/pseudoelements/::after(2)).
+this because we can't use multiple `::after` pseudo-elements.
 
 You'll notice, however, that right now this only works for a single color
 combination (green, blue, purple). If you only add one or two of those classes,
