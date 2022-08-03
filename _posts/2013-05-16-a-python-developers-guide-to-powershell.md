@@ -261,7 +261,7 @@ def get_xkcd(n=''):
         os.makedirs(folder)
 
     # Download comic page
-    url = 'http://xkcd.com/{}'.format(n)
+    url = 'https://xkcd.com/{}'.format(n)
     page = urlopen(url).read().decode('utf-8')
 
     # Get image url from parser
@@ -298,7 +298,7 @@ Function GetXkcd($n='') {
 
     # Initiate web request (requires PowerShell 3). See Notes.
     # Uses -f to format string to replace {0} by comic number
-    $result = Invoke-WebRequest ("http://xkcd.com/{0}" -f $n)
+    $result = Invoke-WebRequest ("https://xkcd.com/{0}" -f $n)
 
     # Get URL of image that is a comic
     $url = ($result.Images | where src -match /comics/).src
@@ -322,7 +322,7 @@ foreach ($i in 1200..1211) {
 Notes
 -----
 You might have to change your PowerShell
-[execution policy](http://technet.microsoft.com/en-us/library/ee176961.aspx)
+[execution policy](https://technet.microsoft.com/en-us/library/ee176961.aspx)
 to run scripts. To do this, run PowerShell as Administrator and type
 `Set-ExecutionPolicy RemoteSigned`.
 
@@ -332,7 +332,7 @@ You can update your help files to be more comprehensive by running
 `Update-Help` as an administrator (PowerShell 3).
 
 You can use
-[IE to parse HTML](http://dmitrysotnikov.wordpress.com/2012/08/06/new-in-powershell-3-parse-html-without-ie-object-unless-a-local-file/)
+[IE to parse HTML](https://dmitrysotnikov.wordpress.com/2012/08/06/new-in-powershell-3-parse-html-without-ie-object-unless-a-local-file/)
 instead of `Invoke-WebRequest` if you don't have PowerShell 3.
 
 Conclusions

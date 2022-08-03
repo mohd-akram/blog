@@ -17,8 +17,8 @@ Code
 ----
 
 First, you're going to need a Steam API key which you can get from
-[here](http://steamcommunity.com/dev/). You'll also need to know your 64-bit
-Steam ID which you can find from [here](http://steamidconverter.com/). Make
+[here](https://steamcommunity.com/dev/). You'll also need to know your 64-bit
+Steam ID which you can find from [here](https://steamidconverter.com/). Make
 sure you have the [Pillow (PIL)](https://pypi.python.org/pypi/Pillow) library
 too. The code is fairly straightforward:
 

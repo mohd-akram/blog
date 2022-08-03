@@ -33,7 +33,7 @@ it (it will most likely be `/dev/sdb`).
 Modify the release version and the volume path as needed.
 
    ```shell
-   curl http://ftp.freebsd.org/pub/FreeBSD/releases/VM-IMAGES/13.1-RELEASE/amd64/Latest/FreeBSD-13.1-RELEASE-amd64.raw.xz | xz -dc | sudo dd of=/dev/sdb bs=1M conv=fdatasync
+   curl https://download.freebsd.org/ftp/releases/VM-IMAGES/13.1-RELEASE/amd64/Latest/FreeBSD-13.1-RELEASE-amd64.raw.xz | xz -dc | sudo dd of=/dev/sdb bs=1M conv=fdatasync
    ```
 
 5. Once the process is complete, detach the block volume from the temporary
