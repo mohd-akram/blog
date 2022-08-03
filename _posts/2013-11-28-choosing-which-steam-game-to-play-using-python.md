@@ -37,14 +37,14 @@ steamid = ''
 
 
 def getownedgames(apikey, steamid):
-    url = ('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/'
+    url = ('https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/'
            '?key={}&steamid={}&include_appinfo=1'.format(apikey, steamid))
 
     return json.loads(urlopen(url).read().decode())['response']['games']
 
 
 def getimage(game):
-    imageurl = 'http://cdn.steampowered.com/v/gfx/apps/{}/header.jpg'
+    imageurl = 'https://cdn.akamai.steamstatic.com/steam/apps/{}/header.jpg'
     data = urlopen(imageurl.format(game['appid'])).read()
 
     return ImageTk.PhotoImage(data=data)
@@ -71,18 +71,11 @@ games = getownedgames(apikey, steamid)
 # GUI
 tk = Tk()
 tk.resizable(0, 0)
-tk.configure(bg='gray11')
 
-gamebutton = Button(tk, width=460, height=215, bd=0,
-                    bg='gray11', activebackground='gray11',
-                    relief='flat', cursor='hand2')
+gamebutton = Button(tk, width=460, height=215)
 gamebutton.pack()
 
-changebutton = Button(tk, width=41, height=1, bd=0,
-                      fg='white', activeforeground='white',
-                      bg='gray11', activebackground='gray11',
-                      relief='flat', cursor='hand2',
-                      font=('Segoe UI Semilight',), text='Nope!',
+changebutton = Button(tk, text='Nope!',
                       command=lambda: choosegame(games, tk, gamebutton))
 changebutton.pack()
 
