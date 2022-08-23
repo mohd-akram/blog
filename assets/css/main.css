@@ -1,5 +1,11 @@
-:root { --code: #5e6687 }
-@media (prefers-color-scheme: dark) { :root { --code: #979db4 } }
+:root { --text-main: black; --code: #5e6687 }
+@media (prefers-color-scheme: dark) {
+  :root { --text-main: #dbdbdb; --code: #979db4 }
+}
+
+body {
+  max-width: 80ch;
+}
 
 code, pre {
   font-family: Consolas, monospace;
