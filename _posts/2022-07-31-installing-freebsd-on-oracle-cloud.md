@@ -10,6 +10,10 @@ images](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managingcustomi
 which require a paid account. This guide will show you how to install FreeBSD
 (or any custom image) using an alternative method.
 
+*Note: For arm64 instances, a FreeBSD image is currently available under the
+partner images source when creating the instance, so you can skip the steps
+below unless you need a specific version.*
+
 Install
 -------
 
