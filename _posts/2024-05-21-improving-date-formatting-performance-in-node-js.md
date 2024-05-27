@@ -167,16 +167,27 @@ const fmt = new Intl.DateTimeFormat("en-US", {
   minute: "2-digit",
   hour12: true,
 });
-
 const date = new Date();
-const n = 1_000_000;
-
+fmt.format(date); // Warmup - the first run is much slower
 console.time("format");
-for (let i = 0; i < n; i++) {
-  fmt.format(date);
-}
+for (let i = 0; i < 1_000_000; i++) fmt.format(date);
 console.timeEnd("format");
 ```
 
-Running this script, I get 2100 ms for Node.js 18 and 1400 ms for Node.js 20 -
-a 1.5x improvement!
+Running this script, I get 2100 ms for Node.js 18 and 1300 ms for Node.js 20 -
+a 1.6x improvement!
+
+For something closer to production use, let's try a few thousand calls to
+`Date.toLocaleString`, which includes both date and time fields, and ensure
+that it's thoroughly warmed up, simulating a long-running application:
+
+```javascript
+const d = new Date();
+for (let i = 0; i < 100_000; i++) d.toLocaleString(); // Warmup
+console.time("format");
+for (let i = 0; i < 10_000; i++) d.toLocaleString();
+console.timeEnd("format");
+```
+
+In this case, we get a 2x improvement, with Node.js 18 taking 36 ms and Node.js
+20 taking just 18 ms, making it twice as fast.
