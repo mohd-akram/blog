@@ -7,10 +7,6 @@ body {
   max-width: 80ch;
 }
 
-code, pre {
-  font-family: Consolas, monospace;
-}
-
 /* Fix overflow - https://github.com/kognise/water.css/issues/174 */
 table {
   display: block;
