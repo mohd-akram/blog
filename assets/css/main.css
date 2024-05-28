@@ -1,6 +1,12 @@
-:root { --text: black; --bg: white; --bg-code: #f6f6f6; --link: #0042ff; }
+:root {
+  --text: black; --bg: white; --bg-code: #f6f6f6; --link: #0042ff;
+  --code-keyword: blue; --code-comment: dimgray;
+}
 @media (prefers-color-scheme: dark) {
-  :root { --text: #eaeaea; --bg: #131623; --bg-code: #181f2f; --link: #58fff8; }
+  :root {
+    --text: #eaeaea; --bg: #131623; --bg-code: #181f2f; --link: #58fff8;
+    --code-keyword: turquoise; --code-comment: gray;
+  }
 }
 
 body {
@@ -49,8 +55,15 @@ td {
   padding-right: 1rem;
 }
 
-.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr {
+/* Code syntax */
+.c, .c1, .cp, .cpf {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+.k, .kd, .kn, .kr, .kt, .nb, .nl, .nt {
   font-weight: bold;
+  color: var(--code-keyword);
 }
 
 main > h1 {
