@@ -1,11 +1,11 @@
 title: seize the dev
 
-author: Mohamed Akram
-email: mohd.akram@outlook.com
+author:
+  name: Mohamed Akram
+  email: mohd.akram@outlook.com
 
 social:
   github: mohd-akram
-  twitter: tixilite
 
 disqus:
   shortname: mohd-akram

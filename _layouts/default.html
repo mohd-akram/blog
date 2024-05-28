@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {%- seo -%}
-    <link rel="stylesheet" href="{{ "/assets/css/water.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-    {% if page.layout != 'home' %}
-    <link rel="stylesheet" href="{{ "/assets/css/syntax.css" | relative_url }}">
-    {% endif %}
     {%- feed_meta -%}
     {%- if jekyll.environment == 'production' and site.google_analytics -%}
       {%- include google-analytics.html -%}
@@ -18,12 +14,19 @@
   <body>
     {% if page.layout != 'home' %}
     <header>
-      <a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-      {%- include icons.html -%}
+      <nav>
+        <a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+      </nav>
     </header>
     {% endif %}
     <main>
       {{ content }}
     </main>
+    <footer>
+      <address>
+        <a href="mailto:{{ site.author.email }}">{{ site.author.name | escape }}</a>
+        <a class="github" href="https://github.com/{{ site.social.github | escape }}">GitHub</a>
+      </address>
+    </footer>
   </body>
 </html>
