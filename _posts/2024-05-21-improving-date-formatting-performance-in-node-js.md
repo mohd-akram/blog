@@ -17,17 +17,21 @@ Whenever I encountered a slow running Node.js application before, I'd reach for
 the `--prof` flag in `node`, which, after some processing, generated a text
 file that showed which functions took the most time. For some reason, it did
 not work as well as it used to (much of the CPU time spent would be marked as
-"unaccounted") and it wasn't clear why. Fortunately, in the meantime Node.js
-added a new flag, `--cpu-prof`. When run with this flag, `node` would create a
-`.cpuprofile` file that could then be loaded into Chrome DevTools and you could
-visually inspect where time is being spent in your code. This is done by going
-to `chrome://inspect` in Chrome, and selecting to open dedicated DevTools for
-Node. Particularly, loading the profile in the *Performance* panel and looking
-at the *Bottom-Up* tab, sorted by *Self Time* in descending order. This will
-show you the functions that are, quite simply, doing too much work in and of
-themselves (as opposed to the total time which includes time spent calling
-other functions). Expanding any entry in this view shows its callers, hence the
-bottom-up (for a more visual guide, see the [DevTools
+"unaccounted") and it wasn't clear why.
+
+Fortunately, in the meantime Node.js added a new flag, `--cpu-prof`. When run
+with this flag, `node` would create a `.cpuprofile` file that could then be
+loaded into Chrome DevTools and you could visually inspect where time is being
+spent in your code.
+
+This is done by going to `chrome://inspect` in Chrome, and selecting to open
+dedicated DevTools for Node. Particularly, loading the profile in the
+*Performance* panel and looking at the *Bottom-Up* tab, sorted by *Self Time*
+in descending order. This will show you the functions that are, quite simply,
+doing too much work in and of themselves (as opposed to the total time which
+includes time spent calling other functions). Expanding any entry in this view
+shows its callers, hence the bottom-up (for a more visual guide, see the
+[DevTools
 docs](https://developer.chrome.com/docs/devtools/performance/nodejs)).
 
 ## Why is it slow?
@@ -35,24 +39,28 @@ docs](https://developer.chrome.com/docs/devtools/performance/nodejs)).
 It turned out there were several libraries that the application depended on
 that had performance issues. I submitted some fixes to those projects, some of
 which have been released and some are still pending. However, the most
-prominent bottleneck was date and time formatting. I used the
-[Luxon](https://moment.github.io/luxon/) library for date and time handling in
-this project, particularly for time zone support. In order for Luxon to get the
-offset of a particular time zone for a given datetime, it resorts to using the
-`Intl.DateTimeFormat` API. This API provides the ability to format any datetime
-value in a locale-specific manner with [many
+prominent bottleneck was date and time formatting.
+
+I used the [Luxon](https://moment.github.io/luxon/) library for date and time
+handling in this project, particularly for time zone support. In order for
+Luxon to get the offset of a particular time zone for a given datetime, it
+resorts to using the `Intl.DateTimeFormat` API. This API provides the ability
+to format any datetime value in a locale-specific manner with [many
 options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)
 to customize the output. It also allows you to format a datetime in a given
-time zone. Since there is no native way in JavaScript to get the offset of a
-time zone ([yet](https://tc39.es/proposal-temporal/docs/)), libraries resort to
-this feature to essentially format the datetime in a given time zone, then
-parse the components of the formatted version and calculate the timestamp from
-that. By comparing this to the known UTC timestamp, the offset can be found. As
-you might guess, this is a somewhat expensive operation for a seemingly simple
-requirement. In my application there might be several hundred showtimes, and
-each of those would need to go through this operation in order to be used as a
-Luxon timezone-aware `DateTime`, which in turn might be formatted several more
-times for human and machine output.
+time zone.
+
+Since there is no native way in JavaScript to get the offset of a time zone
+([yet](https://tc39.es/proposal-temporal/docs/)), libraries resort to this
+feature to essentially format the datetime in a given time zone, then parse the
+components of the formatted version and calculate the timestamp from that. By
+comparing this to the known UTC timestamp, the offset can be found.
+
+As you might guess, this is a somewhat expensive operation for a seemingly
+simple requirement. In my application there might be several hundred showtimes,
+and each of those would need to go through this operation in order to be used
+as a Luxon timezone-aware `DateTime`, which in turn might be formatted several
+more times for human and machine output.
 
 ## How to make it faster?
 
