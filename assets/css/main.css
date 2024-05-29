@@ -32,6 +32,14 @@ pre, code {
   font-size: 0.8rem;
 }
 
+hgroup h2 {
+  margin-bottom: 0;
+}
+
+hgroup p {
+  margin-top: 0;
+}
+
 footer {
   margin-top: 1rem;
 }
@@ -81,8 +89,4 @@ main > h1 {
 
 .posts li h2 {
   margin: 0.5rem 0;
-}
-
-.github {
-  float: right;
 }

@@ -11,9 +11,11 @@ layout: default
   {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
   {%- for post in site.posts -%}
   <li>
-    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
-    <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-    {{ post.description }}
+    <i><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></i>
+    <hgroup>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+      <p>{{ post.description }}</p>
+    </hgroup>
   </li>
   {%- endfor -%}
 </ul>
