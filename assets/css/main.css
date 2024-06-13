@@ -1,35 +1,35 @@
 :root {
-  --text: black; --bg: white; --bg-code: #f6f6f6; --link: #0042ff;
-  --code-keyword: blue; --code-comment: dimgray;
+  --text: black; --bg: white; --bg-code: #f4f4f4; --link: #295cec;
+  --code-keyword: #295cec; --code-comment: dimgray;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #eaeaea; --bg: #131623; --bg-code: #181f2f; --link: #58fff8;
-    --code-keyword: turquoise; --code-comment: gray;
+    --text: #eaeaea; --bg: #1c1d20; --bg-code: #404755; --link: #a2bbed;
+    --code-keyword: #a2bbed; --code-comment: gray;
   }
 }
 
 body {
-  max-width: 44rem;
+  max-width: 38rem;
   margin: 0 auto;
   padding: 1rem;
   color: var(--text);
   background: var(--bg);
   font-family: Avenir, Cantarell, "Segoe UI", sans-serif;
+  font-size: 1.15rem;
   line-height: 1.4;
 }
 
-code {
+p > code {
   white-space: nowrap;
-}
-
-pre code {
-  white-space: pre;
+  background: var(--bg-code);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.8rem;
 }
 
 pre, code {
   font-family: monospace;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 hgroup h2 {
