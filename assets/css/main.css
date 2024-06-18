@@ -4,32 +4,40 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #eaeaea; --bg: #1c1d20; --bg-code: #404755; --link: #a2bbed;
+    --text: #eaeaea; --bg: #1c1d20; --bg-code: #2d3139; --link: #a2bbed;
     --code-keyword: #a2bbed; --code-comment: gray;
   }
 }
 
+html {
+  font-size: large;
+}
+
 body {
-  max-width: 38rem;
+  max-width: 34rem;
   margin: 0 auto;
   padding: 1rem;
   color: var(--text);
   background: var(--bg);
   font-family: Avenir, Cantarell, "Segoe UI", sans-serif;
-  font-size: 1.15rem;
   line-height: 1.4;
 }
 
-p > code {
+code {
   white-space: nowrap;
-  background: var(--bg-code);
-  padding: 0.1rem 0.3rem;
-  border-radius: 0.8rem;
 }
 
-pre, code {
-  font-family: monospace;
-  font-size: 0.9rem;
+pre code {
+  white-space: unset;
+  font-weight: unset;
+}
+
+pre {
+  background: var(--bg-code);
+  padding: 0.5rem;
+  padding-right: 0;
+  overflow: auto;
+  font-size: smaller;
 }
 
 hgroup h2 {
@@ -40,18 +48,22 @@ hgroup p {
   margin-top: 0;
 }
 
+article header {
+  margin-bottom: 1.5rem;
+}
+
+article header h1 {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid;
+}
+
 footer {
   margin-top: 1rem;
 }
 
 a, a:visited {
   color: var(--link);
-}
-
-pre {
-  background: var(--bg-code);
-  padding: 1rem;
-  overflow: auto;
 }
 
 table {
@@ -63,6 +75,24 @@ td {
   padding-right: 1rem;
 }
 
+main > h1 {
+  margin-top: 0;
+}
+
+/* Home page */
+.posts {
+  list-style: none;
+  padding-left: 0;
+}
+
+.posts li {
+  margin-bottom: 2rem;
+}
+
+.posts li h2 {
+  margin: 0.5rem 0;
+}
+
 /* Code syntax */
 .c, .c1, .cp, .cpf {
   color: var(--code-comment);
@@ -70,23 +100,6 @@ td {
 }
 
 .k, .kd, .kn, .kr, .kt, .nb, .nl, .nt {
-  font-weight: bold;
+  font-weight: bolder;
   color: var(--code-keyword);
-}
-
-main > h1 {
-  margin-top: 0;
-}
-
-.posts {
-  list-style: none;
-  padding-left: 0;
-}
-
-.posts li {
-  margin-top: 2rem;
-}
-
-.posts li h2 {
-  margin: 0.5rem 0;
 }

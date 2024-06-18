@@ -5,25 +5,22 @@ layout: default
 
   <header>
     <h1 itemprop="name headline">{{ page.title | escape }}</h1>
-  </header>
-
-  <div itemprop="articleBody">
-    {{ content }}
-  </div>
-
-  <footer>
-    <i>
+    <small>
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
         {{ page.date | date: date_format }}
-      </time> &mdash;
+      </time> &centerdot;
       {% for author in page.author %}
       <span itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">{{ author }}</span></span>
         {%- if forloop.last == false %}, {% endif -%}
       {% endfor %}
-    </i>
-  </footer>
+    </small>
+  </header>
+
+  <div itemprop="articleBody">
+    {{ content }}
+  </div>
 
   {%- if site.disqus.shortname -%}
     {%- include disqus-comments.html -%}
