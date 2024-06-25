@@ -11,27 +11,23 @@ suitable one, I came up with this:
 
 ```javascript
 // For production use, see NPM package below
-const crypto = require('crypto');
-
-function simpleId(length = 8, chars = '23456789abcdefghjkmnpqrstuvwxyz') {
-  const defaultChars = '0123456789abcdefghijklmnopqrstuvwxyz';
-
+function simpleId(length = 8, chars = "23456789abcdefghjkmnpqrstuvwxyz") {
   const numValues = chars.length ** length;
   const numBytes = Math.ceil(Math.log2(numValues) / 8);
   const randValues = 2 ** (numBytes * 8);
 
-  const threshold = randValues - (randValues % numValues);
+  const threshold = randValues % numValues;
 
-  do {
-    const bytes = crypto.randomBytes(numBytes);
-    var randomNumber = parseInt(bytes.toString('hex'), 16);
-  } while (randomNumber >= threshold);
-
+  let randomNumber;
+  const bytes = new Uint8Array(numBytes);
+  do randomNumber = crypto.getRandomValues(bytes).reduce((n, b) => n * 256 + b);
+  while (randomNumber < threshold);
   randomNumber %= numValues;
 
-  const randomId = randomNumber.toString(chars.length).replace(
-    /./g, m => chars[defaultChars.indexOf(m)]
-  ).padStart(length, chars[0]);
+  let randomId = "";
+  for (let i = randomNumber; i > 0; i = Math.trunc(i / chars.length))
+    randomId = chars[i % chars.length] + randomId;
+  randomId = randomId.padStart(length, chars[0]);
 
   return randomId;
 }
@@ -41,7 +37,7 @@ This code generates an 8-character random ID with some useful properties.
 First, it uses a case-insensitive, 31-character alphabet which consists of the
 digits and lowercase letters while excluding `01ilo`. This significantly
 reduces the possibility of transcription errors. Secondly, it uses the
-cryptographically strong `crypto.randomBytes()` function to reduce the
+cryptographically strong `crypto.getRandomValues()` function to reduce the
 predictability of generated IDs. Lastly, it removes any modulo bias and returns
 a random ID with the exact length specified.
 
