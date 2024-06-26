@@ -1,5 +1,7 @@
 title: seize the dev
 
+url: https://akr.am
+
 author:
   name: Mohamed Akram
   email: mohd.akram@outlook.com
@@ -15,6 +17,10 @@ google_analytics: UA-40999116-1
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+
+kramdown:
+  math_engine: katex
 
 permalink: /posts/:title
 
@@ -24,4 +30,5 @@ defaults:
       path: ''
       type: posts
     values:
+      layout: post
       author: Mohamed Akram
