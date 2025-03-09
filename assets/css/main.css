@@ -23,6 +23,18 @@ body {
   line-height: 1.4;
 }
 
+@media (max-width: 38rem) {
+  body {
+    tab-size: 4;
+  }
+}
+
+@media (max-width: 36rem) {
+  body {
+    tab-size: 2;
+  }
+}
+
 blockquote {
   overflow: auto;
 }
