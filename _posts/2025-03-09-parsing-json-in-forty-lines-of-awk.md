@@ -52,7 +52,7 @@ expanded and annotated:
 # The rest are local variables (awk only allows local variables in the form
 # of function parameters)
 function get_json_value( \
-	s, key, \
+	s, key,
 	type, all, rest, isval, i, c, j, k \
 ) {
 	# Get the type of object by its first character
