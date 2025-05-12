@@ -110,7 +110,7 @@ main > h1 {
 }
 
 /* Code syntax */
-.c, .c1, .cp, .cpf {
+.c, .c1, .cm, .cp, .cpf {
   color: var(--code-comment);
   font-style: italic;
 }
