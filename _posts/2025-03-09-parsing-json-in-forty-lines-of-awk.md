@@ -162,19 +162,23 @@ of JSON strings. This is a simple one, which handles everything except Unicode
 escape sequences, but throws an error if it encounters one:
 
 ```awk
-function decode_json_string(s) {
-	if (s !~ /^"/ || s ~ /\\u/)
-		error("cannot handle JSON string " s)
+function decode_json_string(s, out, esc) {
+	if (substr(s, 1, 1) != "\"" || substr(s, length(s), 1) != "\"")
+		error("invalid json string " s)
+
 	s = substr(s, 2, length(s)-2)
-	gsub(/\\b/, "\b", s)
-	gsub(/\\f/, "\f", s)
-	gsub(/\\n/, "\n", s)
-	gsub(/\\r/, "\r", s)
-	gsub(/\\t/, "\t", s)
-	gsub(/\\"/, "\"", s)
-	gsub(/\\\//, "/", s)
-	gsub(/\\\\/, "\\", s)
-	return s
+
+	esc["b"] = "\b"; esc["f"] = "\f"; esc["n"] = "\n"; esc["\""] = "\""
+	esc["r"] = "\r"; esc["t"] = "\t"; esc["/"] = "/" ; esc["\\"] = "\\"
+
+	while (match(s, /\\/)) {
+		if (!(substr(s, RSTART+1, 1) in esc))
+			error("unknown json escape " substr(s, RSTART, 2))
+		out = out substr(s, 1, RSTART-1) esc[substr(s, RSTART+1, 1)]
+		s = substr(s, RSTART+2)
+	}
+
+	return out s
 }
 ```
 
