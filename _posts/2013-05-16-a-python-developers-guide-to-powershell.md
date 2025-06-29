@@ -26,12 +26,14 @@ In Python, this is how you'd write a "hello world" program:
 ```python
 print("hello, world")
 ```
+
 It's even easier in PowerShell:
 
 ```powershell
 "hello, world"
 ```
-PowerShell automatically outputs any strings to the screen without any command.
+
+PowerShell automatically outputs any values to the screen without any command.
 That's kind of cheating, so here's the explicit way to do it:
 
 ```powershell
@@ -61,36 +63,48 @@ Write-Host a=$a, b=$b
 Write-Host ($a + $b)
 ```
 
-Without parentheses, the second `Write-Host` command would produce `5 + 6` instead of `11`.
+Without parentheses, the second `Write-Host` command would produce `5 + 6`
+instead of `11`.
 
-PowerShell also supports arrays with mixed types,
+PowerShell supports fixed-size arrays:
 
 ```powershell
-$Array = 2, "cheese", 6.5, "cake"
+$array = 2, "cheese", 6.5, "cake"
 
 # Explicit syntax
-$Array = @(5, "ice", 3.14, "cream")
+$array = @(5, "ice", 3.14, "cream")
 
 # Inclusive range
-$Array = (1..10)
+$array = (1..10)
 ```
 
-It also supports dictionaries:
+And dictionaries:
 
 ```powershell
-$Table = @{"a" = "apple"; "b" = "ball"}
-$Table["a"] = "acorn"
+$table = @{"a" = "apple"; "b" = "ball"}
+$table["a"] = "acorn"
 
 # Loop through keys
-foreach ($k in $Table.keys) {
-    Write-Host $k, $table[$k]
+foreach ($key in $table.Keys) {
+    Write-Host $key
+}
+
+# Loop through values
+foreach ($value in $table.Values) {
+    Write-Host $value
+}
+
+# Loop through items
+foreach ($item in $table.GetEnumerator()) {
+    Write-Host $item.Key $item.Value
 }
 ```
 
 Loops
 -----
 
-What if we wanted to print the numbers from 1 to 10. In Python, it would look like this:
+What if we wanted to print the numbers from 1 to 10. In Python, it would look
+like this:
 
 ```python
 for i in range(1, 11):
@@ -100,7 +114,15 @@ for i in range(1, 11):
 Similarly, in PowerShell:
 
 ```powershell
-foreach ($i in (1..10)) {
+foreach ($i in 1..10) {
+    Write-Host $i
+}
+```
+
+Or, to avoid creating a range array:
+
+```powershell
+for ($i=1; $i -le 10; $i++) {
     Write-Host $i
 }
 ```
@@ -133,9 +155,9 @@ Conditions look slightly different in PowerShell:
 
 ```powershell
 # Equal to
-$True -eq $False # False
+$true -eq $false # False
 # Not equal to
-$True -ne $False # True
+$true -ne $false # True
 
 # Less than
 5 -lt 10 # True
@@ -153,11 +175,15 @@ PowerShell supports the same logical operators as Python including `-and`,
 
 ```powershell
 # Logical operators
-$Happy = $True
-$KnowIt = $True
+$happy = $true
+$knowit = $true
 
-if ($Happy -and $KnowIt) {
+if ($happy -and $knowit) {
     "Clap hands!"
+} elseif ($happy) {
+    "Yay!"
+} else {
+    "No!"
 }
 ```
 
@@ -176,11 +202,11 @@ def fib(n):
 To define a function in PowerShell, use the `Function` keyword:
 
 ```powershell
-Function Fib($n) {
-    if ($n -lt 2) {
-        return $n
+Function Fib($N) {
+    if ($N -lt 2) {
+        return $N
     }
-    return (Fib($n - 2)) + (Fib($n - 1))
+    return (Fib ($N - 2)) + (Fib ($N - 1))
 }
 ```
 
@@ -195,27 +221,30 @@ To get a list of all the multiples of 2 from 1 to 20, you'd do this in Python:
 ```python
 multiples = [i for i in range(1, 21) if i % 2 == 0]
 ```
+
 PowerShell:
 
 ```powershell
-$Multiples = 1..20 | Where-Object {$_ % 2 -eq 0}
+$multiples = 1..20 | Where-Object { $_ % 2 -eq 0 }
 ```
+
 The list comprehensions are somewhat different than in Python and make use of
 piping, which is a very powerful tool in PowerShell. In this case, a range from
 1 to 20 is piped to the `Where-Object` command which filters the list of items
 according to the condition `$_ % 2 -eq 0`. The `$_` variable essentially refers
 to each item in a list of objects.
 
-To do an operation on each multiple of two, say find its square, we pipe the multiples to the `ForEach-Object`:
+To do an operation on each multiple of two, say find its square, we pipe the
+multiples to the `ForEach-Object`:
 
 ```powershell
-$Squares = $Multiples | ForEach-Object {$_ * $_}
+$squares = $multiples | ForEach-Object { $_ * $_ }
 ```
 
 You can also do it all on one line:
 
 ```powershell
-$Squares = 1..20 | ? {$_ % 2 -eq 0} | % {$_ * $_}
+$squares = 1..20 | ? { $_ % 2 -eq 0 } | % { $_ * $_ }
 ```
 
 The `?` is an alias for `Where-Object` and `%` is an alias for `ForEach-Object`.
@@ -223,7 +252,8 @@ The `?` is an alias for `Where-Object` and `%` is an alias for `ForEach-Object`.
 Example program
 ---------------
 
-I've written a short program in both Python and PowerShell that downloads a bunch of xkcd comics to a "xkcd" folder on the Desktop.
+I've written a short program in both Python and PowerShell that downloads a
+bunch of xkcd comics to a "xkcd" folder on the Desktop.
 
 Python:
 
@@ -304,8 +334,8 @@ Function GetXkcd($n='') {
     $url = ($result.Images | where src -match /comics/).src
 
     # Join folder path with image file name
-    $destination =  Join-Path -Path $folder `
-                              -ChildPath ((Split-Path -Leaf $url))
+    $destination = Join-Path -Path $folder `
+                             -ChildPath ((Split-Path -Leaf $url))
 
     # Download image
     $wc = New-Object System.Net.WebClient
