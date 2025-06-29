@@ -53,7 +53,7 @@ expanded and annotated:
 # of function parameters)
 function get_json_value( \
 	s, key,
-	type, all, rest, isval, i, c, j, k \
+	type, all, rest, nested, isval, i, c, k \
 ) {
 	# Get the type of object by its first character
 	type = substr(s, 1, 1)
@@ -68,9 +68,10 @@ function get_json_value( \
 
 	# Get the first part of the key (which we will be looking for)
 	# if the path is dotted and save the rest for now
-	if (!all && (j = index(key, "."))) {
-		rest = substr(key, j+1)
-		key = substr(key, 1, j-1)
+	if (!all && (i = index(key, "."))) {
+		rest = substr(key, i+1)
+		key = substr(key, 1, i-1)
+		nested = 1
 	}
 
 	# k is the current key
@@ -107,7 +108,7 @@ function get_json_value( \
 			# If this is the object we're looking for and we need
 			# a nested value, pass the rest of the dotted key
 			# Otherwise, get the whole object
-			c = (!all && k == key && !(rest == "" && rest == 0)) ? \
+			c = (!all && k == key && nested) ? \
 				get_json_value(substr(s, i), rest) : \
 				get_json_value(substr(s, i))
 		}
@@ -140,7 +141,12 @@ function get_json_value( \
 
 		# If this is a value, and the key matches, we've found our
 		# desired object, so return it
-		if (!all && isval && k == key) return c
+		if (!all && k == key && isval) {
+			# If a nested value was required, but we matched a
+			# primitive, ignore it
+			if (nested && substr(s, i, 1) !~ /[[{]/) return
+			return c
+		}
 
 		# If we see a colon in an object, the next token is a value
 		# This needs to be after the previous statement to not capture
@@ -163,7 +169,7 @@ escape sequences, but throws an error if it encounters one:
 
 ```awk
 function decode_json_string(s, out, esc) {
-	if (substr(s, 1, 1) != "\"" || substr(s, length(s), 1) != "\"")
+	if (s !~ /^"./ || substr(s, length(s), 1) != "\"")
 		error("invalid json string " s)
 
 	s = substr(s, 2, length(s)-2)
