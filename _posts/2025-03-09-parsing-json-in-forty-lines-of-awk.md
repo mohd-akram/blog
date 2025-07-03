@@ -53,109 +53,84 @@ expanded and annotated:
 # of function parameters)
 function get_json_value( \
 	s, key,
-	type, all, rest, nested, isval, i, c, k \
+	type, all, rest, isval, i, c, k \
 ) {
-	# Get the type of object by its first character
+	# Trim leading whitespace, if any
+	if (match(s, /^[[:space:]]+/)) s = substr(s, RLENGTH+1)
+
+	# Get the type of value by its first character
 	type = substr(s, 1, 1)
 
-	# If it's neither an object, nor an array, throw an error
-	if (type != "{" && type != "[") error("invalid json array/object " s)
-
 	# This variable is needed for when we recursively call the function
-	# It will be true if the key argument is omitted, since undefined
-	# variables in awk can behave as either a string or a number
+	# It will be true if the key argument is undefined, since such
+	# variables can behave as either a string or a number in awk
 	all = key == "" && key == 0
+
+	# If this is a primitive
+	if (type != "{" && type != "[") {
+		# Ensure a key is not passed
+		if (!all) error("invalid json array/object " s)
+		# Parse the value
+		if (!match(s, /^(null|true|false|"(\\.|[^\\"])*"|[.0-9Ee+-]+)/))
+			error("invalid json value " s)
+		# And return it
+		return substr(s, 1, RLENGTH)
+	}
 
 	# Get the first part of the key (which we will be looking for)
 	# if the path is dotted and save the rest for now
 	if (!all && (i = index(key, "."))) {
 		rest = substr(key, i+1)
 		key = substr(key, 1, i-1)
-		nested = 1
 	}
-
-	# k is the current key
-	# If this is an array, it is the index, which starts at 0
-	if (type == "[") k = 0
 
 	# isval keeps track of whether we are looking at a JSON key or value
 	# In an array, all items are values
-	isval = type == "["
+	# k is the current key
+	# If this is an array, it is the index, which starts at 0
+	if ((isval = type == "[")) k = 0
 
 	# Loop over the characters in the provided JSON
 	# Skip the opening brace or bracket (to avoid infinite recursion) and
 	# increment the index by the length of the token
-	for (i = 2; i < length(s); i += length(c)) {
-		# Temporarily assign the first character to our token variable
-		# until we figure out its type
-		c = substr(s, i, 1)
-
-		# If it's a double quote, then we expect a string
-		if (c == "\"") {
-			# Get its length
-			if (!match(substr(s, i), /^"(\\.|[^\\"])*"/))
-				error("invalid json string " substr(s, i))
-			# And extract the string
+	for (i = 2; i <= length(s); i += length(c)) {
+		# Skip over whitespace
+		if (match(substr(s, i), /^[[:space:]]+/)) {
 			c = substr(s, i, RLENGTH)
-			# If we're not expecting a value, then it's a key, so
-			# trim the quotes and save it
-			if (!isval) k = substr(c, 2, length(c)-2)
+			continue
 		}
 
-		# If it's an opening brace or bracket, then we expect an object
-		# or array
-		else if (c == "{" || c == "[") {
-			# If this is the object we're looking for and we need
-			# a nested value, pass the rest of the dotted key
-			# Otherwise, get the whole object
-			c = (!all && k == key && nested) ? \
-				get_json_value(substr(s, i), rest) : \
-				get_json_value(substr(s, i))
-		}
+		# Temporarily assign the first character to our token variable
+		c = substr(s, i, 1)
 
 		# If it's a closing brace or bracket, we've reached the end of
 		# the object or array, so exit the loop
-		else if (c == "}" || c == "]") break
+		if (c == "}" || c == "]") break
 
 		# If we find a comma in an object, the next item will be a key,
-		# so reset isval
-		else if (c == ",") isval = type == "["
+		# so reset isval. If it's an array, increment the index
+		else if (c == ",") { if ((isval = type == "[")) ++k }
 
-		# For the colon, isval needs to be set to true, but that is done
-		# later (see why below)
-		else if (c == ":") ;
+		# If we see a colon, the next token will be a value
+		else if (c == ":") isval = 1
 
-		# Ignore whitespace
-		else if (c ~ /[[:space:]]/) continue
-
-		# Match anything else
+		# Otherwise, we expect a JSON value
 		else {
-			# This will match numbers, booleans and null
-			# Find the next closing bracket, brace, comma or
-			# whitespace, as those terminate values
-			if (!match(substr(s, i), /[]},[:space:]]/))
-				error("invalid json value " substr(s, i))
-			# Extract the value
-			c = substr(s, i, RSTART-1)
+			# If the key matches, this is our desired value,
+			# so pass the rest of the key and return the result
+			if (!all && k == key && isval)
+				return get_json_value(substr(s, i), rest)
+			# Otherwise, get the full value
+			c = get_json_value(substr(s, i))
+			# If this is a string and we're not expecting a value,
+			# then it's a key, so trim the quotes and save it
+			if (c ~ /^"/ && !isval) k = substr(c, 2, length(c)-2)
 		}
-
-		# If this is a value, and the key matches, we've found our
-		# desired object, so return it
-		if (!all && k == key && isval) {
-			# If a nested value was required, but we matched a
-			# primitive, ignore it
-			if (nested && substr(s, i, 1) !~ /[[{]/) return
-			return c
-		}
-
-		# If we see a colon in an object, the next token is a value
-		# This needs to be after the previous statement to not capture
-		# the colon itself
-		if (type == "{" && c == ":") isval = 1
-
-		# If this is an array and we see a comma, increment the index
-		if (type == "[" && c == ",") ++k
 	}
+
+	# Do a basic check that the object or array was properly closed
+	if ((type == "{" && c != "}") || (type == "[" && c != "]"))
+		error("unterminated json array/object " s)
 
 	# If we're here, it means we didn't find the value we're looking for
 	# so only return something if the whole array or object was requested
