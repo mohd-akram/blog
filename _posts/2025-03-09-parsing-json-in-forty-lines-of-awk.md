@@ -34,10 +34,20 @@ dotted path to a key or array index, and returns the corresponding value. It
 can be used like so:
 
 ```awk
-items = get_json_value(json, "payload.items")
-while ((item = get_json_value(items, i++))) {
-	type = decode_json_string(get_json_value(item, "type"))
-	name = decode_json_string(get_json_value(item, "name"))
+# Get one value
+name = decode_json_string(get_json_value(json, "author.name"))
+
+# Loop over an object
+get_json_value(json, "dependencies", deps)
+for (name in deps)
+	version = decode_json_string(deps[name])
+
+# Loop over an array
+get_json_value(json, "payload.items", items)
+for (i = 0; items[i]; i++) {
+	get_json_value(items[i], null, item)
+	type = decode_json_string(item["type"])
+	name = decode_json_string(item["name"])
 }
 ```
 
@@ -48,12 +58,13 @@ use the same approach here. This is the
 expanded and annotated:
 
 ```awk
-# The function takes two parameters, the JSON object/array and the desired key
+# The function takes three parameters: the JSON object/array, the desired key,
+# and an optional array to be filled if the key points to an object or array.
 # The rest are local variables (awk only allows local variables in the form
 # of function parameters)
 function get_json_value( \
-	s, key,
-	type, all, rest, isval, i, c, k \
+	s, key, a,
+	skip, type, all, rest, isval, i, c, k, null \
 ) {
 	# Trim leading whitespace, if any
 	if (match(s, /^[[:space:]]+/)) s = substr(s, RLENGTH+1)
@@ -70,9 +81,11 @@ function get_json_value( \
 	if (type != "{" && type != "[") {
 		# Ensure a key is not passed
 		if (!all) error("invalid json array/object " s)
+
 		# Parse the value
 		if (!match(s, /^(null|true|false|"(\\.|[^\\"])*"|[.0-9Ee+-]+)/))
 			error("invalid json value " s)
+
 		# And return it
 		return substr(s, 1, RLENGTH)
 	}
@@ -119,9 +132,14 @@ function get_json_value( \
 			# If the key matches, this is our desired value,
 			# so pass the rest of the key and return the result
 			if (!all && k == key && isval)
-				return get_json_value(substr(s, i), rest)
+				return get_json_value(substr(s, i), rest, a)
+
 			# Otherwise, get the full value
-			c = get_json_value(substr(s, i))
+			c = get_json_value(substr(s, i), null, null, 1)
+
+			# And add it to the associative array
+			if (all && !skip && isval) a[k] = c
+
 			# If this is a string and we're not expecting a value,
 			# then it's a key, so trim the quotes and save it
 			if (c ~ /^"/ && !isval) k = substr(c, 2, length(c)-2)
