@@ -21,6 +21,8 @@ plugins:
 
 kramdown:
   math_engine: katex
+  math_engine_opts:
+    output: mathml
 
 permalink: /posts/:title
 
