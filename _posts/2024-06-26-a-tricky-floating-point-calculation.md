@@ -102,7 +102,7 @@ as accurate as I'd like. While looking into this, I came across another
 function that also works better for small values, `expm1`, which returns
 $$e^x - 1$$. We can factor out $$d$$ to make this usable too:
 
-$$ n + d * \left( \exp{\left( n \log{\left( 1 - \frac{1}{d} \right)} \right)} - 1 \right) $$
+$$ n + d \left( \exp{\left( n \log{\left( 1 - \frac{1}{d} \right)} \right)} - 1 \right) $$
 
 And in code:
 
