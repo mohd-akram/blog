@@ -12,7 +12,7 @@ social:
 disqus:
   shortname: mohd-akram
 
-google_analytics: UA-40999116-1
+google_analytics: G-DKFMDNFCRR
 
 plugins:
   - jekyll-feed
