@@ -35,19 +35,19 @@ can be used like so:
 
 ```awk
 # Get one value
-name = decode_json_string(get_json_value(json, "author.name"))
+name = jsonunquote(jsonget(json, "author.name"))
 
 # Loop over an object
-get_json_value(json, "dependencies", deps)
+jsonget(json, "dependencies", deps)
 for (name in deps)
-	version = decode_json_string(deps[name])
+	version = jsonunquote(deps[name])
 
 # Loop over an array
-get_json_value(json, "payload.items", items)
+jsonget(json, "payload.items", items)
 for (i = 0; items[i]; i++) {
-	get_json_value(items[i], null, item)
-	type = decode_json_string(item["type"])
-	name = decode_json_string(item["name"])
+	jsonget(items[i], null, item)
+	type = jsonunquote(item["type"])
+	name = jsonunquote(item["name"])
 }
 ```
 
@@ -62,7 +62,7 @@ expanded and annotated:
 # and an optional array to be filled if the key points to an object or array.
 # The rest are local variables (awk only allows local variables in the form
 # of function parameters)
-function get_json_value( \
+function jsonget( \
 	s, key, a,
 	skip, type, all, rest, isval, i, c, k, null \
 ) {
@@ -132,10 +132,10 @@ function get_json_value( \
 			# If the key matches, this is our desired value,
 			# so pass the rest of the key and return the result
 			if (!all && k == key && isval)
-				return get_json_value(substr(s, i), rest, a)
+				return jsonget(substr(s, i), rest, a)
 
 			# Otherwise, get the full value
-			c = get_json_value(substr(s, i), null, null, 1)
+			c = jsonget(substr(s, i), null, null, 1)
 
 			# And add it to the associative array
 			if (all && !skip && isval) a[k] = c
@@ -161,7 +161,7 @@ of JSON strings. This is a simple one, which handles everything except Unicode
 escape sequences, but throws an error if it encounters one:
 
 ```awk
-function decode_json_string(s, out, esc) {
+function jsonunquote(s, out, esc) {
 	if (s !~ /^"./ || substr(s, length(s), 1) != "\"")
 		error("invalid json string " s)
 
