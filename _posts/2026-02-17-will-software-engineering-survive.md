@@ -3,9 +3,9 @@ title: Will Software Engineering Survive?
 description: Investigating recent claims amidst the rise of LLMs.
 ---
 
-Since LLMs have been released, many claims about LLMs or in support of them
-have left me scratching my head, and wondering if software engineering
-principles were a myth all along.
+Since LLMs were released, many claims about them or in support of them have left
+me scratching my head, and wondering if software engineering principles were a
+myth all along.
 
 Before LLMs, it was well accepted that lines of code written is not a measure
 of productivity. Rather, the less code you have, the better, because it's
